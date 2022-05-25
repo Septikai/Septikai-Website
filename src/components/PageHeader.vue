@@ -34,8 +34,11 @@ export default {
 .header {
   font-family: 'Roboto', sans-serif;
   background-color: #212121;
-  height: 60px;
-  position: relative;
+  height: 65px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
   box-shadow: 0 5px 10px #151515;
   z-index: 9;
   display: flex;

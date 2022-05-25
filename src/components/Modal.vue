@@ -28,9 +28,8 @@ export default {
   watch: {
     imageProp: {
       immediate: true,
-      handler(newVal, oldVal) {
+      handler(newVal) {
         this.image = newVal;
-
       }
     }
   },
@@ -59,28 +58,28 @@ export default {
 }
 
 img {
-  margin: auto;
+  margin: 3% auto 2% auto;
   position: relative;
   text-align: center;
   display: block;
   max-width: 80%;
-  max-height: 80%;
+  max-height: 70%;
   object-fit: scale-down;
 }
+
 .caption {
-  margin: auto;
   display: block;
   align-self: center;
-  max-width: 80%;
+  max-width: 700px;
   text-align: center;
   color: #ccc;
   padding: 10px 0;
-  height: 5%;
+  margin: 0 auto auto auto;
 }
 
 .close {
   position: absolute;
-  top: 10%;
+  margin: 1% auto auto auto;
   right: 2%;
   color: #f1f1f1;
   font-size: 40px;
