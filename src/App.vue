@@ -44,13 +44,14 @@ body {
 .main {
   overflow: auto;
   background-color: #464646;
-  width: 60%;
+  width: 70%;
   margin: 20px auto auto;
   box-shadow: 0 0 10px #606060;
   padding: 16px;
   border-radius: 5px;
   height: 100%;
   --link-color: #00BFFFFF;
+  border-bottom: 16px;
 }
 
 .sub-section {
