@@ -45,11 +45,11 @@ body {
   overflow: auto;
   background-color: #464646;
   width: 70%;
-  margin: 100px auto auto;
+  margin: 100px auto 10px auto;
   box-shadow: 0 0 10px #606060;
   padding: 16px;
   border-radius: 5px;
-  height: 100%;
+  min-height: 100%;
   --link-color: #00BFFFFF;
   border-bottom: 16px;
 }
@@ -61,6 +61,7 @@ body {
   padding-bottom: 10px;
   border-left: 5px solid #393939;
   height: auto;
+  overflow: hidden;
 }
 
 a {

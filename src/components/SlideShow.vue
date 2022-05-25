@@ -84,9 +84,9 @@ export default {
   background-color: #404040;
   margin-top: 16px;
   border-radius: 16px;
-  height: 508px;
+  min-height: 560px;
   box-sizing: border-box;
-  padding: 16px 0 12px 0;
+  padding: 16px 0 8px 0;
   align-content: center;
   position: relative;
   display: flex;
@@ -111,7 +111,7 @@ export default {
 }
 
 img {
-  max-height: 400px;
+  max-width: 70%;
   object-fit: contain;
   padding: 16px;
   left: 50%;
@@ -154,8 +154,8 @@ img:hover {
   position: absolute;
   left: 50%;
   bottom: 0;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, 25%);
+  transform: translate(-50%, 25%);
 }
 
 .prev, .next {
