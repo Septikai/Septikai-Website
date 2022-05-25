@@ -24,7 +24,7 @@
           </ul>
         </li>
       </ul>
-      <SlideShow :images="getImages('skyhouse')"></SlideShow>
+      <SlideShow :images="getImages('skyhouse')" class="skyhouse-slideshow"></SlideShow>
     </div>
     <br>
     <h2>SpiderHeck Mods</h2>
