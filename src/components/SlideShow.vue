@@ -1,25 +1,34 @@
 <template>
-  <div class="image-box">
-    <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length }}</p>
-    <transition-group name="fade" tag="div" class="image-container">
-      <img :src="currentImg()" :alt="getImageCaption"/>
-    </transition-group>
-    <p class="image-box-caption">{{ getImageCaption() }}</p>
-    <a class="prev" @click.prevent="manualPrev" href="#">&#10094;</a>
-    <a class="next" @click.prevent="manualNext" href="#">&#10095;</a>
+  <div>
+    <Modal :imageProp="modal ? currentImg()['href'] : ''" :altProp="getImageCaption()" @close-modal="closeModal()"></Modal>
+    <div class="image-box">
+      <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length }}</p>
+      <transition-group name="fade" tag="div" class="image-container">
+        <img :src="currentImg()" :alt="getImageCaption()" @click="openModal()"/>
+      </transition-group>
+      <p class="image-box-caption">{{ getImageCaption() }}</p>
+      <a class="prev" @click.prevent="manualPrev" href="#">&#10094;</a>
+      <a class="next" @click.prevent="manualNext" href="#">&#10095;</a>
+    </div>
   </div>
 </template>
 
 <script>
+import Modal from "@/components/Modal.vue";
+
 export default {
   name: "SlideShow",
+  components: {
+    Modal
+  },
   props: {
     images: Array
   },
   data() {
     return {
       timer: null,
-      currentIndex: 0
+      currentIndex: 0,
+      modal: false
     }
   },
   mounted() {
@@ -54,6 +63,14 @@ export default {
     },
     getImageCaption() {
       return this.images[this.currentIndex]["alt"];
+    },
+    openModal() {
+      this.modal = true;
+      clearInterval(this.timer);
+    },
+    closeModal() {
+      this.modal = false;
+      this.timer = setInterval(this.next, 3000);
     }
   }
 }
