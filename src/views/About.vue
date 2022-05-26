@@ -7,7 +7,7 @@
     <p>I'm currently studying CS, Maths and Further Maths</p>
     <p>I know Python, Java, C#, some JS and a little VB. Currently working on improving my web dev skills</p>
     <br>
-    <p><string>Contact Me:</strong> septikai@septikai.me</p>
+    <p><strong>Contact Me:</strong> septikai@septikai.me</p>
   </div>
 </template>
 
