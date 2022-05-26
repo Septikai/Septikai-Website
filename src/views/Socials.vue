@@ -6,6 +6,7 @@
     <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai">Septikai</a></p>
     <p><strong>YouTube:</strong> <a target="_blank" href="https://www.youtube.com/channel/UCu9a3FffEJU7DKkIlYwx2zA">Septikai</a></p>
     <p><strong>Steam:</strong> <a target="_blank" href="https://steamcommunity.com/id/septikai/">Septikai</a></p>
+    <p><strong>Email:</strong> septikai@septikai.me</p>
   </div>
 </template>
 
