@@ -28,6 +28,14 @@
       <SlideShow :images="getImages('skyhouse')"></SlideShow>
     </div>
     <br>
+    <h2>Nullzee's Cave Discord Bot</h2>
+    <p><strong>GitHub Organisation:</strong> <a target="_blank" href="https://github.com/nullzee-cave">Nullzee's Cave GitHub</a></p>
+    <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/nullzee-cave/nullzee-bot">Source Code</a></p>
+    <p><strong>The Discord:</strong> <a target="_blank" href="https://discord.com/invite/nullzee">discord.gg/nullzee</a></p>
+    <p>The discord bot found in Nullzee's Cave. This is a rather complex discord bot that has been in near constant development for just over 2 years now. I starting helping out with it in December 2020, and am now the lead developer behind it.</p>
+    <p>A website/dashboard for the server and bot are also in the works.</p>
+    <p>An image showcase will be added here in the future to show off some of the various functionalities of the bot without having to join the discord server.</p>
+    <br>
     <h2>This Website</h2>
     <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/Septikai-Website">Source Code</a></p>
     <p>You're looking at it.</p>
