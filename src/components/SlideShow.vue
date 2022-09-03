@@ -69,7 +69,7 @@ export default {
   border-radius: 16px;
   height: 508px;
   box-sizing: border-box;
-  padding: 16px 0 12px 0;
+  padding: 16px 0 202px 0;
   align-content: center;
   position: relative;
   display: flex;
@@ -94,14 +94,14 @@ export default {
 }
 
 img {
-  max-height: 400px;
+  max-height: 90%;
+  max-width: 95%;
   object-fit: contain;
   padding: 16px;
-  left: 50%;
   position: absolute;
-  display: flex;
   -ms-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
+  display: flex;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -136,10 +136,35 @@ img:hover {
 
 .image-box-caption {
   position: absolute;
-  left: 50%;
   bottom: 0;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+@media (max-width: 1000px) {
+  .image-box {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 250px;
+    align-items: center;
+  }
+
+  .image-number {
+    padding-top: 1%;
+  }
+
+  img {
+    margin-top: 2%;
+    padding-top: 0;
+    margin-bottom: 2%;
+    padding-bottom: 0;
+    position: relative;
+    left: 50%;
+  }
+
+  .image-box-caption {
+    margin-bottom: 1%;
+  }
 }
 
 .prev, .next {

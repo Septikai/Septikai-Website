@@ -62,6 +62,17 @@ body {
   height: auto;
 }
 
+@media (max-width: 1000px) {
+  .main {
+    width: 80%;
+    padding: 16px;
+  }
+
+  .sub-section {
+    border-left: 3px solid #393939;
+  }
+}
+
 a {
   color: #00BFFFFF;
 }
