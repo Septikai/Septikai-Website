@@ -4,8 +4,11 @@
     <br>
     <p>I exist</p>
     <br>
+    <p></p>
     <p>I'm currently studying CS, Maths and Further Maths</p>
-    <p>I know Python, Java, C#, some JS and a little VB. Currently working on improving my web dev skills.</p>
+    <p>I know Python, Java, C#, some JS and a little VB.</p>
+    <br>
+    <p>They/She</p>
     <br>
     <p><strong>Contact Me:</strong> septikai@septikai.me</p>
   </div>
