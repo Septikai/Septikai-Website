@@ -5,7 +5,7 @@
     <p>I exist</p>
     <br>
     <p></p>
-    <p>I'm currently studying CS at university. Maths</p>
+    <p>I'm currently studying CS at university.</p>
     <p>I know Python, Java, C#, some JS and a little VB, learning Go and looking for an excuse to learn Rust.</p>
     <br>
     <p>They/She</p>
