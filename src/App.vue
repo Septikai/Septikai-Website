@@ -80,6 +80,10 @@ body {
   .sub-section {
     border-left: 3px solid #393939;
   }
+
+  .offset-navbar {
+    margin-top: 22%;
+  }
 }
 
 h1 {
