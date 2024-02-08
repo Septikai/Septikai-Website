@@ -149,7 +149,8 @@ img:hover {
   }
 
   .image-number {
-    padding-top: 1%;
+    align-self: flex-start;
+    padding-top: 5%;
   }
 
   img {
