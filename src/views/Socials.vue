@@ -1,5 +1,12 @@
 <template>
-  <div class="main">
+  <div v-if="isPersonal" class="main">
+    <h1>My Socials</h1>
+    <br>
+    <p><strong>Email:</strong> <a target="_blank" href="mailto:nataliaspencedev@gmail.com">nataliaspencedev@gmail.com</a></p>
+    <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai">Septikai</a></p>
+    <p><strong>Discord:</strong> septikai</p>
+  </div>
+  <div v-else class="main">
     <h1>My Socials</h1>
     <br>
     <p><strong>Discord:</strong> septikai</p>
@@ -11,7 +18,8 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  props: ["isPersonal"]
 };
 </script>
 

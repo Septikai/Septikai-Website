@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <h1>My Projects</h1>
+    <p class="centre">Projects shown on this page are in reverse-chronological order.</p>
     <br>
     <h2>SpiderHeck Mods</h2>
     <p>Mods for the game <a target="_blank" href="https://store.steampowered.com/app/1329500/SpiderHeck/">SpiderHeck</a> on Steam.</p>
@@ -48,7 +49,7 @@
     <p><strong>GitHub Organisation:</strong> <a target="_blank" href="https://github.com/nullzee-cave">Nullzee's Cave GitHub</a></p>
     <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/nullzee-cave/nullzee-bot">Source Code</a></p>
     <p><strong>The Discord:</strong> <a target="_blank" href="https://discord.gg/BwKTFDSSaG">discord.gg/nullzee</a></p>
-    <p>The discord bot found in Nullzee's Cave. This is a rather complex discord bot that has been in near constant development for just over 2 years now. I starting helping out with it in December 2020, and I am now the lead developer behind it.</p>
+    <p>The discord bot found in Nullzee's Cave. This is a rather complex discord bot that has been in near constant development for {{ yearsSinceNullzeeBotCreation }} years now. I starting helping out with it in December 2020, and I am now the lead developer behind it.</p>
     <p>A website/dashboard for the server and bot are also in the works. More as something fun for me to make and to prove to myself that I can do it rather than to actually be useful.</p>
     <p>An image showcase will be added here at some point in the future to show some of the various aspects of the bot without having to join the discord server.</p>
     <br>
@@ -102,6 +103,14 @@ export default {
           }
       }
     }
+  },
+  computed: {
+    yearsSinceNullzeeBotCreation() {
+      let now = new Date(new Date(Date.now()).toDateString());
+      let dateDif = now - new Date("2020-10-11");
+      dateDif /= (1000 * 60 * 60 * 24 * 365.25);
+      return Math.floor((dateDif - Math.floor(dateDif)) * (1000 * 60 * 60 * 24 * 365)) > 0 ? `over ${Math.floor(dateDif)}` : Math.floor(dateDif);
+    }
   }
 };
 </script>
@@ -112,6 +121,10 @@ export default {
 }
 
 h1 {
+  text-align: center;
+}
+
+.centre {
   text-align: center;
 }
 </style>

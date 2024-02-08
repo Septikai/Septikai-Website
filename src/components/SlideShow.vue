@@ -35,7 +35,6 @@ export default {
       if (this.currentIndex >= Object.keys(this.images).length - 1) {
         this.currentIndex = 0;
       } else this.currentIndex += 1;
-      console.log(this.currentIndex)
     },
     prev() {
       if (this.currentIndex <= 0) {

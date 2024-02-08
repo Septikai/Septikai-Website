@@ -3,7 +3,7 @@
     <nav>
       <PageHeader/>
     </nav>
-    <router-view/>
+    <router-view :isPersonal="isPersonal"/>
   </div>
 </template>
 
@@ -14,6 +14,11 @@ export default {
   name: "App",
   components: {
     PageHeader
+  },
+  computed: {
+    isPersonal() {
+      return window.location.hostname === "tals.dev";
+    }
   }
 };
 </script>
