@@ -1,10 +1,8 @@
 <template>
   <div class="image-box">
     <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length }}</p>
-    <transition-group name="fade" tag="div">
-      <div>
-        <img :src="currentImg()" :alt="getImageCaption"/>
-      </div>
+    <transition-group name="fade" tag="div" class="image-container">
+      <img :src="currentImg()" :alt="getImageCaption"/>
     </transition-group>
     <p class="image-box-caption">{{ getImageCaption() }}</p>
     <a class="prev" @click.prevent="manualPrev" href="#">&#10094;</a>
@@ -66,13 +64,12 @@ export default {
   background-color: #404040;
   margin-top: 16px;
   border-radius: 16px;
-  height: 508px;
-  box-sizing: border-box;
-  padding: 16px 0 202px 0;
+  height: min-content;
+  padding: 16px 0 16px 0;
   align-content: center;
-  position: relative;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .fade-enter-active,
@@ -92,14 +89,20 @@ export default {
   opacity: 0;
 }
 
+.image-container {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 3%;
+}
+
 img {
-  max-height: 90%;
-  max-width: 95%;
-  object-fit: contain;
-  padding: 16px;
-  position: absolute;
-  -ms-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
+  height: auto;
+  width: 80%;
   display: flex;
   cursor: pointer;
   transition: 0.3s;
@@ -125,7 +128,6 @@ img:hover {
 }
 
 .image-number {
-  z-index: 1;
   position: absolute;
   display: flex;
   justify-self: flex-start;
@@ -141,29 +143,14 @@ img:hover {
 }
 
 @media (max-width: 1000px) {
-  .image-box {
-    padding-top: 0;
-    padding-bottom: 0;
-    height: 250px;
-    align-items: center;
-  }
-
-  .image-number {
-    align-self: flex-start;
-    padding-top: 5%;
-  }
-
   img {
-    margin-top: 2%;
-    padding-top: 0;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
     padding-bottom: 0;
-    position: relative;
     left: 50%;
   }
 
   .image-box-caption {
-    margin-bottom: 1%;
+    margin-bottom: 3%;
   }
 }
 

@@ -13,13 +13,13 @@
       <ul>
         <li>A website with
           <ul>
-            <li>An AH flipper</li>
+            <li>An AH flipper - a tool to allow you to find items being sold far below their actual value for you to then resell for a higher price</li>
           </ul>
         </li>
         <li>A mod with
           <ul>
             <li>An AH Flipper</li>
-            <li>A Creation GUI that values your items</li>
+            <li>A Creation GUI that calculates the value of your items</li>
             <li>A Bits to Coins overlay that shows you the most profitable items in the community shop</li>
           </ul>
         </li>
