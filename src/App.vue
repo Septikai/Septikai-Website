@@ -3,7 +3,9 @@
     <nav>
       <PageHeader/>
     </nav>
-    <router-view :isPersonal="isPersonal"/>
+    <div class="offset-navbar">
+      <router-view :isPersonal="isPersonal"/>
+    </div>
   </div>
 </template>
 
@@ -56,6 +58,10 @@ body {
   border-radius: 5px;
   height: 100%;
   --link-color: #00BFFFFF;
+}
+
+.offset-navbar {
+  margin-top: 6%;
 }
 
 .sub-section {
