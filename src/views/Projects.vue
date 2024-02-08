@@ -1,23 +1,6 @@
 <template>
   <div class="main">
     <h1>My Projects</h1>
-    <p class="centre">Projects shown on this page are in reverse-chronological order.</p>
-    <br>
-    <h2>SpiderHeck Mods</h2>
-    <p>Mods for the game <a target="_blank" href="https://store.steampowered.com/app/1329500/SpiderHeck/">SpiderHeck</a> on Steam.</p>
-    <div class="sub-section">
-      <h3>OneShot</h3>
-      <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/OneShot">Source Code</a></p>
-      <p>This mod causes every weapon to only have one ammo, disintegrating once used.</p>
-      <br>
-      <h3>InfiniteAmmo</h3>
-      <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/InfiniteAmmo">Source Code</a></p>
-      <p>The opposite of OneShot, this mod gives every reusable weapon infinite ammo. This of course does not include grenades and the like.</p>
-      <br>
-      <h3>MultiplayerTiers</h3>
-      <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/MultiplayerTiers">Source Code</a></p>
-      <p>This mod removes the 1 player limitation on the Tiers of Heck game mode for local multiplayer. The original intent was to expand this to include online multiplayer, however in the time since this was created, a better mod was released that increases the player limit not only in Tiers of Heck, but in the lobby and other game modes as well, so this mod is discontinued in favour of that.</p>
-    </div>
     <br>
     <h2>Skyblock.Tools</h2>
     <p><strong>GitHub Organisation:</strong> <a target="_blank" href="https://github.com/skyblock-tools">Skyblock.Tools</a></p>
@@ -43,6 +26,22 @@
       </ul>
       <p>and many more features planned and in development for both.</p>
       <SlideShow :images="getImages('skyhouse')"></SlideShow>
+    </div>
+    <br>
+    <h2>SpiderHeck Mods</h2>
+    <p>Mods for the game <a target="_blank" href="https://store.steampowered.com/app/1329500/SpiderHeck/">SpiderHeck</a> on Steam.</p>
+    <div class="sub-section">
+      <h3>OneShot</h3>
+      <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/OneShot">Source Code</a></p>
+      <p>This mod causes every weapon to only have one ammo, disintegrating once used.</p>
+      <br>
+      <h3>InfiniteAmmo</h3>
+      <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/InfiniteAmmo">Source Code</a></p>
+      <p>The opposite of OneShot, this mod gives every reusable weapon infinite ammo. This of course does not include grenades and the like.</p>
+      <br>
+      <h3>MultiplayerTiers</h3>
+      <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/MultiplayerTiers">Source Code</a></p>
+      <p>This mod removes the 1 player limitation on the Tiers of Heck game mode for local multiplayer. The original intent was to expand this to include online multiplayer, however in the time since this was created, a better mod was released that increases the player limit not only in Tiers of Heck, but in the lobby and other game modes as well, so this mod is discontinued in favour of that.</p>
     </div>
     <br>
     <h2>Nullzee's Cave Discord Bot</h2>
