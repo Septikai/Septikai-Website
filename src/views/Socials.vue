@@ -1,14 +1,14 @@
 <template>
   <div v-if="isPersonal" class="main">
     <h1>My Socials</h1>
-    <br>
+    <br/>
     <p><strong>Email:</strong> <a target="_blank" href="mailto:nataliaspencedev@gmail.com">nataliaspencedev@gmail.com</a></p>
     <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai">Septikai</a></p>
     <p><strong>Discord:</strong> septikai</p>
   </div>
   <div v-else class="main">
     <h1>My Socials</h1>
-    <br>
+    <br/>
     <p><strong>Discord:</strong> septikai</p>
     <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai">Septikai</a></p>
     <p><strong>YouTube:</strong> <a target="_blank" href="https://www.youtube.com/channel/UCu9a3FffEJU7DKkIlYwx2zA">Septikai</a></p>

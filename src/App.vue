@@ -35,7 +35,7 @@ export default {
 }
 
 html {
-  height: 100vh;
+  height: 100%;
   overflow: auto;
 }
 
@@ -55,13 +55,14 @@ body {
   margin: 25px auto 25px auto;
   box-shadow: 0 0 10px #606060;
   padding: 16px;
+  padding-bottom: 0.5%;
   border-radius: 5px;
   height: 100%;
   --link-color: #00BFFFFF;
 }
 
 .offset-navbar {
-  margin-top: 6%;
+  padding-top: 5%;
 }
 
 .sub-section {
