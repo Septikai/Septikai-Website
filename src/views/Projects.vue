@@ -19,7 +19,7 @@
         <li>A mod with
           <ul>
             <li>An AH Flipper</li>
-            <li>A Creation Gui that values your items</li>
+            <li>A Creation GUI that values your items</li>
             <li>A Bits to Coins overlay that shows you the most profitable items in the community shop</li>
           </ul>
         </li>
@@ -80,7 +80,7 @@ export default {
             },
             "1": {
               "img": new URL("../assets/slideshows/skyhouse/config-ah-overlays.png", import.meta.url),
-              "alt": "Skyhouse Config Gui"
+              "alt": "Skyhouse Config GUI"
             },
             "2": {
               "img": new URL("../assets/slideshows/skyhouse/selection-gui.png", import.meta.url),
@@ -92,7 +92,7 @@ export default {
             },
             "4": {
               "img": new URL("../assets/slideshows/skyhouse/creation-gui.png", import.meta.url),
-              "alt": "Skyhouse Auction Creation Gui"
+              "alt": "Skyhouse Auction Creation GUI"
             },
             "5": {
               "img": new URL("../assets/slideshows/skyhouse/bits-overlay.png", import.meta.url),
