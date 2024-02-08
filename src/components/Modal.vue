@@ -1,9 +1,9 @@
 <template>
   <div v-if="image !== ''">
     <div class="modal" ref="modal" @click="close()">
+      <span class="close" @click="close()">&times;</span>
       <img :src="image" :alt="alt" ref="img" @click.stop="">
       <p class="caption" @click.stop="">{{ alt }}</p>
-      <span class="close" @click="close()">&times;</span>
       <a class="prev" @click.stop="$emit('manual-prev-event')" href="#">&#10094;</a>
       <a class="next" @click.stop="$emit('manual-next-event')" href="#">&#10095;</a>
     </div>
@@ -61,18 +61,17 @@ export default {
 
 img {
   margin: 3% auto 2% auto;
-  position: relative;
-  text-align: center;
-  display: block;
+  display: flex;
   max-width: 80%;
   max-height: 70%;
   object-fit: scale-down;
+  position: relative;
 }
 
 .caption {
   display: block;
   align-self: center;
-  max-width: 700px;
+  max-width: 80%;
   text-align: center;
   color: #ccc;
   padding: 10px 0;
