@@ -1,9 +1,11 @@
 <template>
   <div v-if="image !== ''">
-    <div class="modal" ref="modal">
-      <img :src="image" :alt="alt" ref="img">
-      <p class="caption">{{ alt }}</p>
+    <div class="modal" ref="modal" @click="close()">
+      <img :src="image" :alt="alt" ref="img" @click.stop="">
+      <p class="caption" @click.stop="">{{ alt }}</p>
       <span class="close" @click="close()">&times;</span>
+      <a class="prev" @click.stop="$emit('manual-prev-event')" href="#">&#10094;</a>
+      <a class="next" @click.stop="$emit('manual-next-event')" href="#">&#10095;</a>
     </div>
   </div>
 </template>
@@ -91,5 +93,33 @@ img {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 40%;
+  display: block;
+  cursor: pointer;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 4px 4px 0;
+  user-select: none;
+  text-decoration: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.prev {
+  left: 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.9);
 }
 </style>

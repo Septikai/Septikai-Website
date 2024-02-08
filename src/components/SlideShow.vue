@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal :imageProp="modal ? currentImg()['href'] : ''" :altProp="getImageCaption()" @close-modal="closeModal()"></Modal>
+    <Modal :imageProp="modal ? currentImg()['href'] : ''" :altProp="getImageCaption()" @close-modal="closeModal()" @manual-prev-event="manualPrev" @manual-next-event="manualNext"></Modal>
     <div class="image-box">
       <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length }}</p>
       <transition-group name="fade" tag="div" class="image-container">
@@ -22,7 +22,7 @@ export default {
     Modal
   },
   props: {
-    images: Array
+    images: Object
   },
   data() {
     return {
@@ -129,21 +129,6 @@ img:hover {
   opacity: 0.7;
 }
 
-.prev, .next {
-  cursor: pointer;
-  top: 40%;
-  width: auto;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.7s ease;
-  border-radius: 0 4px 4px 0;
-  text-decoration: none;
-  user-select: none;
-  justify-self: flex-start;
-}
-
 .image-number {
   position: absolute;
   display: flex;
@@ -183,6 +168,8 @@ img:hover {
   transition: 0.6s ease;
   border-radius: 0 4px 4px 0;
   user-select: none;
+  text-decoration: none;
+  justify-self: flex-start;
 }
 
 .next {
