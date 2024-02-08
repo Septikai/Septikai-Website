@@ -1,25 +1,34 @@
 <template>
-  <div class="image-box">
-    <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length }}</p>
-    <transition-group name="fade" tag="div" class="image-container">
-      <img :src="currentImg()" :alt="getImageCaption"/>
-    </transition-group>
-    <p class="image-box-caption">{{ getImageCaption() }}</p>
-    <a class="prev" @click.prevent="manualPrev" href="#">&#10094;</a>
-    <a class="next" @click.prevent="manualNext" href="#">&#10095;</a>
+  <div>
+    <Modal :imageProp="modal ? currentImg()['href'] : ''" :altProp="getImageCaption()" @close-modal="closeModal()" @manual-prev-event="manualPrev" @manual-next-event="manualNext"></Modal>
+    <div class="image-box">
+      <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length }}</p>
+      <transition-group name="fade" tag="div" class="image-container">
+        <img :src="currentImg()" :alt="getImageCaption()" @click="openModal()"/>
+      </transition-group>
+      <p class="image-box-caption">{{ getImageCaption() }}</p>
+      <a class="prev" @click.prevent="manualPrev" href="#">&#10094;</a>
+      <a class="next" @click.prevent="manualNext" href="#">&#10095;</a>
+    </div>
   </div>
 </template>
 
 <script>
+import Modal from "@/components/Modal.vue";
+
 export default {
   name: "SlideShow",
+  components: {
+    Modal
+  },
   props: {
-    images: Array
+    images: Object
   },
   data() {
     return {
       timer: null,
-      currentIndex: 0
+      currentIndex: 0,
+      modal: false
     }
   },
   mounted() {
@@ -54,6 +63,14 @@ export default {
     },
     getImageCaption() {
       return this.images[this.currentIndex]["alt"];
+    },
+    openModal() {
+      this.modal = true;
+      clearInterval(this.timer);
+    },
+    closeModal() {
+      this.modal = false;
+      this.timer = setInterval(this.next, 3000);
     }
   }
 }
@@ -112,21 +129,6 @@ img:hover {
   opacity: 0.7;
 }
 
-.prev, .next {
-  cursor: pointer;
-  top: 40%;
-  width: auto;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.7s ease;
-  border-radius: 0 4px 4px 0;
-  text-decoration: none;
-  user-select: none;
-  justify-self: flex-start;
-}
-
 .image-number {
   position: absolute;
   display: flex;
@@ -166,6 +168,8 @@ img:hover {
   transition: 0.6s ease;
   border-radius: 0 4px 4px 0;
   user-select: none;
+  text-decoration: none;
+  justify-self: flex-start;
 }
 
 .next {

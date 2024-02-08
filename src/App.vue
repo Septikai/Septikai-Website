@@ -3,7 +3,9 @@
     <nav>
       <PageHeader/>
     </nav>
-    <router-view :isPersonal="isPersonal"/>
+    <div class="offset-navbar">
+      <router-view :isPersonal="isPersonal"/>
+    </div>
   </div>
 </template>
 
@@ -33,7 +35,7 @@ export default {
 }
 
 html {
-  height: 100vh;
+  height: 100%;
   overflow: auto;
 }
 
@@ -42,7 +44,6 @@ body {
   background-repeat: repeat-y;
   background-attachment: fixed;
   background-color: #303030;
-  min-height: 100vh;
   margin: 0;
 }
 
@@ -50,12 +51,15 @@ body {
   overflow: auto;
   background-color: #464646;
   width: 60%;
-  margin: 25px auto 25px auto;
+  margin: 6% auto 25px auto;
   box-shadow: 0 0 10px #606060;
-  padding: 16px;
+  padding: 16px 16px 0.5% 16px;
   border-radius: 5px;
-  height: 100%;
   --link-color: #00BFFFFF;
+}
+
+.offset-navbar {
+  margin-top: 5%;
 }
 
 .sub-section {
@@ -70,12 +74,20 @@ body {
 @media (max-width: 1000px) {
   .main {
     width: 80%;
-    padding: 16px;
+    margin-top: 20%;
   }
 
   .sub-section {
     border-left: 3px solid #393939;
   }
+
+  .offset-navbar {
+    margin-top: 22%;
+  }
+}
+
+h1 {
+  margin-top: 0.5%;
 }
 
 a {
