@@ -24,7 +24,6 @@
           </ul>
         </li>
       </ul>
-      <p>and many more features planned and in development for both.</p>
       <SlideShow :images="getImages('skyhouse')"></SlideShow>
     </div>
     <br>
