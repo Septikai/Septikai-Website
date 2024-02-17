@@ -1,18 +1,18 @@
 <template>
   <div class="main">
     <h1>About Me</h1>
-    <br>
+    <br/>
     <p>I exist</p>
-    <br>
+    <br/>
     <p></p>
     <p>I'm currently studying Computer Science at Aberystwyth University.</p>
     <p>I know Python, C# and Java, I'm vaguely familiar with Arduino C, JavaScript, TypeScript, and certain aspects of web dev such as CSS and Vue.js, and I'm currently learning Rust.</p>
     <p>I've worked with discord.py a lot, but other than that I haven't gone too in depth into any particular frameworks or libraries.</p>
-    <br>
+    <br/>
     <p>They/She</p>
-    <br>
     <div v-if="isPersonal">
-    <p><strong>Contact Me:</strong></p>
+      <br/>
+      <p><strong>Contact Me:</strong></p>
       <p>Mastodon - <a rel="me" href="https://mastodon.tals.dev/@septikai">@septikai@tals.dev</a></p>
       <p>Email - <a target="_blank" href="mailto:nataliaspencedev@gmail.com">nataliaspencedev@gmail.com</a></p>
     </div>
