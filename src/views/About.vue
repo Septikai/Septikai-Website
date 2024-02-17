@@ -11,7 +11,11 @@
     <br>
     <p>They/She</p>
     <br>
-    <p v-if="isPersonal"><strong>Contact Me:</strong> <a target="_blank" href="mailto:nataliaspencedev@gmail.com">nataliaspencedev@gmail.com</a></p>
+    <div v-if="isPersonal">
+    <p><strong>Contact Me:</strong></p>
+      <p>Mastodon - <a rel="me" href="https://mastodon.tals.dev/@septikai">@septikai@tals.dev</a></p>
+      <p>Email - <a target="_blank" href="mailto:nataliaspencedev@gmail.com">nataliaspencedev@gmail.com</a></p>
+    </div>
   </div>
 </template>
 
