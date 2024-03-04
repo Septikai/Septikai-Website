@@ -13,7 +13,7 @@
     <div v-if="isPersonal">
       <br/>
       <p><strong>Contact Me:</strong></p>
-      <p>Mastodon - <a rel="me" href="https://mastodon.tals.dev/@septikai">@septikai@tals.dev</a></p>
+      <p>Mastodon - <a rel="me" href="https://md.tals.dev/@septikai">@septikai@tals.dev</a></p>
       <p>Email - <a target="_blank" href="mailto:nataliaspencedev@gmail.com">nataliaspencedev@gmail.com</a></p>
     </div>
   </div>
