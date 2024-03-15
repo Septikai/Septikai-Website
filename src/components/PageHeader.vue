@@ -1,11 +1,12 @@
 <template>
   <div class="header">
-    <router-link to="/">
+    <!-- TODO: Remove the v-if from the router-link when a photo of me is added -->
+    <router-link to="/" v-if="!isPersonal">
       <div v-if="!isPersonal">
         <img class="home-icon border-transparent focus:border-transparent focus:ring-0" alt="Septikai Pfp" src="../assets/square_icon.png">
       </div>
       <div v-else>
-        <!-- Put a photo of me here -->
+        <!-- TODO: Put a photo of me here -->
       </div>
     </router-link>
     <div class="header-v-for">
