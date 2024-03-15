@@ -4,8 +4,8 @@
       <span class="close" @click="close()">&times;</span>
       <img :src="image" :alt="alt" ref="img" @click.stop="">
       <p class="caption" @click.stop="">{{ alt }}</p>
-      <a class="prev" @click.stop="$emit('manual-prev-event')" href="#">&#10094;</a>
-      <a class="next" @click.stop="$emit('manual-next-event')" href="#">&#10095;</a>
+      <a class="prev" @click.stop="$emit('manual-prev-event')" href="javascript:;">&#10094;</a>
+      <a class="next" @click.stop="$emit('manual-next-event')" href="javascript:;">&#10095;</a>
     </div>
   </div>
 </template>

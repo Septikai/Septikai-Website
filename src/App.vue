@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav>
-      <PageHeader/>
+      <PageHeader :isPersonal="isPersonal"/>
     </nav>
     <div class="offset-navbar">
       <router-view :isPersonal="isPersonal"/>

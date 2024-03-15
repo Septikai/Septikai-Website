@@ -1,7 +1,12 @@
 <template>
   <div class="header">
     <router-link to="/">
-      <img class="home-icon border-transparent focus:border-transparent focus:ring-0" alt="Septikai Pfp" src="../assets/square_icon.png">
+      <div v-if="!isPersonal">
+        <img class="home-icon border-transparent focus:border-transparent focus:ring-0" alt="Septikai Pfp" src="../assets/square_icon.png">
+      </div>
+      <div v-else>
+        <!-- Put a photo of me here -->
+      </div>
     </router-link>
     <div class="header-v-for">
       <a class="header-buttons rounded-button border-transparent focus:border-transparent focus:ring-0"
@@ -22,6 +27,7 @@
 <script>
 export default {
   name: "PageHeader.vue",
+  props: ["isPersonal"],
   computed: {
     routes() {
       return this.$router.options.routes.filter((x) => x.includeInHeader);

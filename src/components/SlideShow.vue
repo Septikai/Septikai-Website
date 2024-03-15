@@ -3,9 +3,9 @@
     <Modal :imageProp="modal ? currentImg()['href'] : ''" :altProp="getImageCaption()" @close-modal="closeModal()" @manual-prev-event="manualPrev" @manual-next-event="manualNext"></Modal>
     <div class="image-box">
       <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length }}</p>
-      <transition-group name="fade" tag="div" class="image-container">
+      <div class="image-container">
         <img :src="currentImg()" :alt="getImageCaption()" @click="openModal()"/>
-      </transition-group>
+      </div>
       <p class="image-box-caption">{{ getImageCaption() }}</p>
       <a class="prev" @click.prevent="manualPrev" href="#">&#10094;</a>
       <a class="next" @click.prevent="manualNext" href="#">&#10095;</a>
@@ -22,7 +22,9 @@ export default {
     Modal
   },
   props: {
-    images: Object
+    images: Object,
+    autoCycle: Boolean,
+    intervalTime: Number
   },
   data() {
     return {
@@ -32,31 +34,31 @@ export default {
     }
   },
   mounted() {
-    this.startSlide();
+    this.setInterval();
   },
   methods: {
-    startSlide() {
-      this.timer = setInterval(this.next, 3000);
+    setInterval() {
+      this.timer = this.autoCycle ? setInterval(this.next, this.intervalTime !== undefined ? this.intervalTime : 3000) : false;
     },
     next() {
-      if (this.currentIndex >= Object.keys(this.images).length - 1) {
+      if (this.currentIndex >= Object.keys(this.images).length - 2) {
         this.currentIndex = 0;
       } else this.currentIndex += 1;
     },
     prev() {
       if (this.currentIndex <= 0) {
-        this.currentIndex = Object.keys(this.images).length - 1;
+        this.currentIndex = Object.keys(this.images).length - 2;
       } else this.currentIndex -= 1;
     },
     manualNext() {
       this.next();
-      clearInterval(this.timer);
-      this.timer = setInterval(this.next, 3000);
+      if (this.autoCycle) clearInterval(this.timer);
+      this.setInterval();
     },
     manualPrev() {
       this.prev();
-      clearInterval(this.timer);
-      this.timer = setInterval(this.next, 3000);
+      if (this.autoCycle) clearInterval(this.timer);
+      this.setInterval();
     },
     currentImg() {
       return this.images[this.currentIndex]["img"];
@@ -66,11 +68,11 @@ export default {
     },
     openModal() {
       this.modal = true;
-      clearInterval(this.timer);
+      if (this.autoCycle) clearInterval(this.timer);
     },
     closeModal() {
       this.modal = false;
-      this.timer = setInterval(this.next, 3000);
+      this.setInterval();
     }
   }
 }
