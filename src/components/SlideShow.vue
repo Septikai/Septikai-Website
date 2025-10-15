@@ -2,7 +2,7 @@
   <div>
     <Modal :imageProp="modal ? currentImg()['href'] : ''" :altProp="getImageCaption()" @close-modal="closeModal()" @manual-prev-event="manualPrev" @manual-next-event="manualNext"></Modal>
     <div class="image-box">
-      <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length }}</p>
+      <p class="image-number">{{ currentIndex + 1 }} / {{ Object.keys(this.images).length - 1}}</p>
       <div class="image-container">
         <img :src="currentImg()" :alt="getImageCaption()" @click="openModal()"/>
       </div>
