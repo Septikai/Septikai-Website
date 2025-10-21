@@ -4,7 +4,7 @@
   <p>Not all those who wander are lost, but you probably are.</p>
   <p>Blahaj and Smolhaj say hi</p>
   <div class="image-container">
-  <img class="border-transparent focus:border-transparent focus:ring-0" alt="Blahaj and Smolhaj Photo" src="../assets/photos/Blahaj_Smolhaj.jpg">
+    <img class="border-transparent focus:border-transparent focus:ring-0" alt="Blahaj and Smolhaj Photo" src="../assets/photos/Blahaj_Smolhaj.jpg">
   </div>
 </div>
 </template>
