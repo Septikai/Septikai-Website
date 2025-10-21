@@ -10,7 +10,7 @@
     <p>I've worked with discord.py a lot and have experience in modding both Minecraft and smaller Unity games, but other than that I haven't gone too in depth into any particular frameworks or libraries.</p>
     <br/>
     <p>They/She</p>
-    <div v-if="isPersonal">
+    <div v-if="domain !== 'septikai.me'">
       <br/>
       <p><strong>Contact Me:</strong></p>
       <p>Mastodon - <a rel="me" href="https://md.tals.dev/@septikai">@septikai@tals.dev</a></p>
@@ -22,7 +22,7 @@
 <script>
 export default {
   name: "Home",
-  props: ["isPersonal"]
+  props: ["domain"]
 };
 </script>
 

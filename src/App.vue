@@ -1,10 +1,10 @@
 <template>
   <div>
     <nav>
-      <PageHeader :isPersonal="isPersonal"/>
+      <PageHeader :domain="domain"/>
     </nav>
     <div class="offset-navbar">
-      <router-view :isPersonal="isPersonal"/>
+      <router-view :domain="domain"/>
     </div>
   </div>
 </template>
@@ -18,8 +18,8 @@ export default {
     PageHeader
   },
   computed: {
-    isPersonal() {
-      return window.location.hostname === "tals.dev";
+    domain() {
+      return window.location.hostname;
     }
   }
 };

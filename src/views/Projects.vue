@@ -112,7 +112,7 @@ export default {
     SlideShow
   },
   props: {
-    isPersonal: Boolean
+    domain: String
   },
   computed: {
     yearsSinceNullzeeBotCreation() {

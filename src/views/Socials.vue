@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isPersonal" class="main">
+  <div v-if="domain !== 'septikai.me'" class="main">
     <h1>My Socials</h1>
     <br/>
     <p><strong>Mastodon:</strong> <a rel="me" href="https://md.tals.dev/@septikai">@septikai@tals.dev</a></p>
@@ -20,7 +20,7 @@
 <script>
 export default {
   name: "Home",
-  props: ["isPersonal"]
+  props: ["domain"]
 };
 </script>
 
