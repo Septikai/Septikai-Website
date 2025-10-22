@@ -1,0 +1,1380 @@
+\documentclass[a4paper]{report}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{parskip}
+\usepackage{geometry}
+\usepackage[linesnumbered, ruled]{algorithm2e}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{varioref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+
+% Preamble
+
+% Numbering on subsubsections
+\setcounter{secnumdepth}{3}
+
+% Prevent tabular p{} spacing out text
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% Comments for pseudocode
+\SetKwComment{tcp}{// }{}
+\newcommand\commentfont[1]{\textcolor{blue}{#1}}
+\SetCommentSty{commentfont}
+
+% Use better font encoding
+\usepackage[T1]{fontenc}
+
+% Shrink the huge default margins around the sides of the document
+\newgeometry{vmargin=1in, hmargin=1in}
+
+% Command to restore margins
+\newcommand\restoremargins{\pagebreak\restoregeometry}
+
+% Chapter author command
+\makeatletter
+\newcommand{\chapterauthor}[1]{%
+	{\parindent0pt\vspace*{-25pt}%
+		\linespread{1.1}\large\scshape#1%
+		\par\nobreak\vspace*{25pt}}
+	\@afterheading%
+}
+
+% Section author command
+\newcommand{\sectionauthor}[1]{%
+	{\parindent0pt\vspace*{0pt}%
+		\linespread{1.1}\large\scshape#1%
+		\par\nobreak\vspace*{10pt}}
+	\@afterheading%
+}
+
+% Extend footnote rule
+\renewcommand\footnoterule{%
+	\kern-3\p@
+	\hrule\@width \textwidth
+	\kern2.6\p@}
+\makeatother
+\makeatother
+
+% Colour definitions
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegrey}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% Code style definition
+\lstdefinestyle{code}{
+	language=java,
+	tabsize=4,
+	commentstyle=\color{codegreen},
+	backgroundcolor=\color{backcolour},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegrey},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily, 
+	breakatwhitespace=false,
+	breaklines=true,
+	numbers=left,
+	numbersep=5pt,
+	gobble=16,
+	showstringspaces=false,
+	captionpos=t
+}
+\lstset{style=code}
+
+% Code caption formatting
+\renewcommand\lstlistingname{}
+\DeclareCaptionFormat{listing}{\rule{\dimexpr\textwidth\relax}{0.4pt}\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt, font={sf}}
+
+% Make command for blue hrefs
+\newcommand{\link}[2]{\color{blue}\href{#1}{#2}\color{black}}
+
+% Title and author are used by \maketitle on the title page
+\title{Beginner's Guide To JavaFX }
+\author{Natalia Spence}
+
+% Header
+
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+	
+	\chapter{Introduction}\label{chap:introduction}
+	
+	First I'd like to make clear what this is and isn't - this pdf is not to function as a complete, or even near complete documentation of everything in JavaFX; that can be found \link{https://openjfx.io/javadoc/23/}{here}. This is solely to guide you through the stuff deemed most important to our group project, and is compiled as spike work, made almost entirely of knowledge gained through spike work. This is also not a Java guide, but a JavaFX guide. Some necessary Java will be explained, such as File and Image I/O and the basics of Lambdas, but for the most part it is assumed you understand Java as a language and are capable of figuring out or researching any code shown here that is not explained as part of this guide.
+	
+	This pdf is made up of several chapters, each chapter containing several sections. Chapters should be for broad topics, such as setup, events, files and animations, whilst sections will be for more specific focusses, such as a specific class used, or an in depth example. The author of each section or chapter will be displayed with the header.
+	
+	\section{JavaFX Installation And Setup}\label{sec:javafx installation and setup}
+	
+	Sometimes JavaFX will work out the box, and that's great! But it often will not do that, so this section will serve as an installation guide, and a setup guide assuming you are using IntelliJ.
+	
+	First, you're going to need to download JavaFX. I used \link{https://gluonhq.com/products/javafx/}{this website}, you simply download the relevant SDK for your OS. Once you've done that, unzip it and put it anywhere in your file system that you can find easily in a moment.
+	
+	Next you'll need to open up your project in IntelliJ. For the group project, this has already been created, simply open the \textbf{gp6} folder in IntelliJ. If you want to use it in another project, follow the guide in the next section to create a blank JavaFX project. If you try to run this, you will probably be given an error saying JavaFX is missing. Click "File > Project Structure > Libraries" and click the $+$ in the top left, then navigate to your JavaFX folder and select the \textbf{lib} folder.
+	
+	Now, go to "File > Settings > Appearance \& Behaviour > Path Variables" and click the $+$. In the Name section, type "\lstinline{PATH_TO_FX}", and in the value navigate to your JavaFX \textbf{lib} folder once again. Click OK to save this.
+	
+	Finally, you need to add VM options to your run configuration. In the top right of the window, to the left of the run button, there should be a dropdown. It will either have the name of an existing run configuration, or say there is none. You need to click this, and click "Edit Configurations". If you do not have an existing run configuration, click the $+$, then "Application". For the "Main class" select your uk.aber.dcs.gp6.Main class, then click "Modify options" above that and select "Add VM Options" to make the VM options text box appear. Paste the following line into your VM options:
+	
+	\begin{lstlisting}
+		--module-path=${PATH_TO_FX} --add-modules=javafx.controls
+	\end{lstlisting}
+	
+	With that, JavaFX is installed and set up, and you should be able to use this run configuration to run your program without issues.			
+	
+	\section{Creating A Project}\label{sec:creating a project}
+	
+	Setting up a project tends to vary depending on your IDE, but for the purposes of this guide it will be assumed that you are working in Jetbrains IntelliJ from an empty project\footnote{IntelliJ offers a JavaFX template for new projects, however that will create a JavaFX project using fxml, which we are going to be avoiding, therefore it causes less confusion to start from an empty project.}.
+	
+	The first thing you will need to do, just as with any Java project, is create a $uk.aber.dcs.gp6.Main$ class. The difference here, is that the $Main$ class must extend $javafx.application.Application$ and implement it's $start$ method, and the $main$ method should only call $launch()$:
+	
+	\begin{lstlisting}
+		public class Main extends Application {
+			@Override
+			public void start(Stage stage) throws IOException {
+				
+			}
+			
+			public static void main(String[] args) {
+				launch();
+			}
+		}
+	\end{lstlisting}
+	
+	With this code, your program should already be able to run, it just... doesn't do anything. You haven't told it to do anything except launch JavaFX, so it starts JavaFX's background processes and does absolutely nothing else. So the first thing you're going to want to do, would be create a basic UI.
+	
+	A JavaFX UI is made with a $Stage$. Every JavaFX program has one, and it is already provided to you in the arguments of the $start$ method. You simply need to populate it. To do that, you use a $Scene$. A $Scene$ contains various UI elements, and is what is displayed by the $Stage$ - you can think of a $Scene$ as the window itself, and the $Stage$ as the program that runs the window, but to create a $Scene$, you need to have something to go on said $Scene$. There are various options for this, but we are going to use a $Pane$.
+	
+	A $Pane$ functions as a group of UI elements, whether they are visible or not, and can be used as the $root$ of a scene - the object the entire scene is based on\footnote{This is why each UI in this project will inherit from $Pane$, rather than $Scene$, $Stage$, or anything else.}.
+	
+	With this knowledge, you can be able to create a working JavaFX program with a visible (but empty) UI, as per the next page.
+	
+	\vfill
+	
+	\pagebreak
+	
+	\begin{lstlisting}
+		public class Main extends Application {
+			@Override
+			public void start(Stage stage) throws IOException {
+				// Create the Pane to be displayed
+				Pane root = new Pane();
+				// Create the Scene using the Pane as the root
+				// The int arguments are the dimensions of the window, width and height
+				Scene scene = new Scene(root, 1080, 920);
+				// Set the window name
+				stage.setTitle("Hello!");
+				// Set the current scene
+				stage.setScene(scene);
+				// Actually display the screen
+				stage.show();
+			}
+			
+			public static void main(String[] args) {
+				launch();
+			}
+		}
+	\end{lstlisting}
+	
+	
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.67\textwidth]{Assets/1.1 First Project.png}
+		\end{center}
+		\caption{An initial JavaFX UI.}
+	\end{figure}
+	
+	\chapter{Adding To A Pane}\label{chap:adding to a pane}
+	
+	\section{Shapes}\label{sec:shapes}
+	
+	Now you should have a UI, but an empty UI isn't very useful. To that end, we want to add things to the $Pane$, and by extension to the $Scene$. Anything that inherits from $javafx.scene.Node$ can be added to a $Pane$. This may seem rather limited at first, but there are a \textit{lot} of classes that inherit from $Node$, if not directly. One example (which will likely be the most used one in this project) is the $Rectangle$ class, which creates, you guessed it, a rectangle. By default this will be a solid black rectangle, but that can easily be changed, as will be explained below.
+	
+	To create a $Rectangle$, you can simply create a new instance of the class, passing in the $x$, $y$, $width$ and $height$ as arguments. Note that the $x$ and $y$ coordinates are of the top left point of the rectangle, not the centre. After that, you can simply call the $getChildren().add(node)$ method on the $Pane$ to add the $Rectangle$ to it. If you want to add multiple $Node$s at once, use $addAll()$ instead of add, and list out the nodes, e.g. $addAll(rectangle1,\ rectangle2,\ rectangle3)$.
+	
+	It's rather common to not want a solid black rectangle, so we can use the $setFill()$ method - this can take an $ImagePattern$ (which can be made by calling $new ImagePattern(image)$ with an $Image$ object) or a $Color$ object, and will set that image or colour as the background for that rectangle. Images will be stretched to fit. For more cohesive image manipulation, you would likely want something like an $ImageView$ - for more information, refer to \vref{sec:displaying images}.
+	
+	Other notable $Shape$s that can be used in the same manner include $Circle$ and $Line$.
+	
+	\begin{lstlisting}
+		@Override
+		public void start(Stage stage) throws IOException {
+			...
+			
+			// Create a rectangle
+			Rectangle rectangle = new Rectangle(400, 400, 100, 150);
+			// Make it green
+			rectangle.setFill(Color.GREEN);
+			// Add it to the Pane
+			root.getChildren().add(rectangle);					
+			
+			...
+		}
+	\end{lstlisting}
+	
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.67\textwidth]{Assets/2.1 Green Rectangle.png}
+		\end{center}
+		\caption{A green rectangle!}
+	\end{figure}
+	
+	\section{Text}\label{sec:text}
+	
+	Handling text is unfortunately less simple than shapes. Whilst it can be added in exactly the same way, resizing it is far less convenient. Rather than specifying a width and height, then using $getWidth()$ and $getHeight()$, you specify a font size, then check the size of the layout bounds of the text object afterwards. For example, if you want to centre some text on the screen:
+	
+	\begin{lstlisting}
+		// Make the Text object
+		txt = new Text("Centre Of Screen Text");
+		// Set the font size to 40
+		txt.setFont(new Font(40));
+		// Centre it
+		txt.setY(this.getHeight()/2 - (txt.getLayoutBounds().getHeight()/2));
+		txt.setX(this.getWidth()/2 - (txt.getLayoutBounds().getWidth()/2));
+	\end{lstlisting}
+	
+	There are also a variety of other methods allowing for you to do various things with the text, such as underlining it or putting a line through it. The documentation for this can be found \link{https://docs.oracle.com/javase/8/javafx/api/javafx/scene/text/Text.html}{here}.
+	
+	\chapter{File I/O}\label{chap:file i/o}
+	
+	\chapter{Image Manipulation}\label{chap:image manipulation}
+	
+	\chapter{Events}\label{chap:events}
+	
+	\section{What Are Events?}\label{sec:what are events}
+	
+	JavaFX is very event based. This means that rather than looping endlessly to display things and waiting until something changes (like the C assignment), that part is done out of your view in JavaFX's internal code. So we have no endless loop running to make things happen, but we still need a way to do things - this is where events come in.
+	
+	Rather than endlessly looping, we instead wait for an \textit{event}. There are loads of events, and I would encourage you to look up the documentation for the class in question for a complete list, but some examples include $onMousePressed$, $onMouseDragged$ or $onKeyPressed$. These allow us to bind methods to those events, so that when those events happen JavaFX automatically calls the methods we told it to. Events can be used with $Node$ as you would expect, but they can also be used with the $Pane$ itself to allow you to detect, for example, mouse clicks that are not on an object.
+	
+	When an event occurs, it travels from the root $Node$ of the $Scene$ down to the target node, the one that called it. Along the way it goes through all event \textbf{filters}. It then starts travelling back, calling event \textbf{handlers} for each $Node$ as it goes, starting with the $Node$ that called it all the way down to the root of the $Scene$. At any point in both filters and handlers, you can stop this by calling $event.consume()$, which will use up the event, preventing it from calling anything else.
+	
+	There are several ways to bind methods to events:
+	
+	\begin{lstlisting}
+		@Override
+		public void start(Stage stage) throws IOException {
+			...
+			// Create an EventHandler
+			EventHandler handler = new EventHandler<MouseEvent>() {
+				public void handle(MouseEvent event) {
+					System.out.println("Handling event " + event.getEventType()); 
+					event.consume();
+				}
+			};
+			
+			rectangle.setOnMousePressed(handler);
+			...
+		}
+	\end{lstlisting}
+	
+	This option creates an $EventHandler$ with the relevant event type (in this case, $MouseEvent$), then creates a function inside it where you can do things. But do we really need a variable for this? The example below works exactly the same but without the additional variable:
+	
+	\begin{lstlisting}
+		@Override
+		public void start(Stage stage) throws IOException {
+			...
+			rectangle.setOnMousePressed((new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					// Do stuff here
+				}
+			}));
+			...
+		}
+	\end{lstlisting}
+	
+	Both of these methods have the same benefits and drawbacks - it's clear what is happening, but you do not have access to anything outside the event handler, so you cannot use methods from $rectangle$ or anything at all except for things you can find inside the $EventHandler$.
+	
+	The other option is a bit harder to fully understand but much simpler and much more useful:
+	
+	\label{example:event binding with lambda}
+	\begin{lstlisting}
+		@Override
+		public void start(Stage stage) throws IOException {
+			...
+			rectangle.setOnMousePressed(mouseEvent -> {
+				// Do stuff here
+			});
+			...
+		}
+	\end{lstlisting}
+	
+	This makes use of \link{https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/Lambda-QuickStart/index.html}{lambdas}\  in order to create a method to handle this event on the fly. This allows all the functionality of the first option, but here you still have access to everything outside the method - you can freely use methods from $rectangle$ and anything else you would have access to outside of this method.
+	
+	\subsection{Lambdas}\label{subsec:lambdas}
+	
+	This subsection will serve as a quick summary of the quick-start lambda guide linked above. It is not technically necessary to read this for the project, but will help you understand how event handling with lambdas works, and may clear up any confusion the previous section caused.
+	
+	Lambdas can be confusing to use at first, but they are extremely useful in the right situation. They provide a way to represent a single anonymous method (a method with no name, commonly used when it is known the method will only be called once, often specifically in cases like this) using an expression.
+	
+	Lambdas have a very simple syntax, since they are designed to be possible with a single readable line of code:
+	
+	\setlength{\tabcolsep}{10pt}
+	\def\arraystretch{1.4}
+	\begin{center}
+		\begin{tabular}{c c c}
+			\hline
+			Argument List & Arrow Token & Body \\
+			\hline
+			(int x, int y) & -> & x + y \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	The argument list works identically to a normal method, except in some cases where the argument types are already known (such as binding a lambda to an event as per \cref{example:event binding with lambda}), in which case you can simply write the identifiers and omit the types.
+	
+	The arrow token is simply made up of a dash ($-$) and a greater than sign ($>$), and it tells the program that you are defining a lambda using the arguments before it with the function body after it.
+	
+	Finally you have the lambda's body, which works identically to any function body.
+	
+	All of the following are valid lambda expressions:
+	
+	\begin{lstlisting}[gobble=20]
+		(int x, int y) -> x + y; // Returns x + y
+		() -> 42; // Returns 42
+		(String s) -> { System.out.println(s); } // Prints a string
+	\end{lstlisting}
+	
+	Lambdas have a large variety of uses, but most of them should not be required for this project, so I will not be writing about them to avoid unnecessarily overcomplicating this section.
+	
+	\section{Events Examples}\label{sec:events examples}
+	
+	\subsection{Rotating A Rectangle}\label{subsec:rotating a rectangle}
+	
+	Say we want to rotate a rectangle when we hover over it and scroll. We can use the $setOnScroll$ method to run code when the $onScroll$ event is called. One option is an anonymous method:
+	
+	\begin{lstlisting}[gobble=20]
+		rectangle.setOnScroll(new EventHandler<ScrollEvent>() {
+			public void handle(ScrollEvent event) {
+				// Rotate shape here
+			}
+		});
+	\end{lstlisting}
+	
+	But this is long and prevents us from accessing the rectangle itself, which makes it impossible to rotate it. So lets use a lambda instead:
+	
+	\begin{lstlisting}[gobble=20]
+		rectangle.setOnScroll(scrollEvent -> {
+			// Rotate shape here
+		})
+	\end{lstlisting}
+	
+	With this, we can write code to be ran when the $onScroll$ event is called, whilst still having access to all the variables we would outside this method.
+	
+	So how do we actually rotate the rectangle? All events have a type, in this case $ScrollEvent$. We can use this to access information about how this event was called with the $scrollEvent$ argument for this lambda. The documentation for $ScrollEvent$ can be found \link{https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/ScrollEvent.html}{here}.
+	
+	In this case, there is a method in $ScrollEvent$ called $getDeltaY()$, which will return the vertical scroll amount that called the event. However, just directly incrementing the rectangle's rotation by this value would cause it to rotate in large intervals with minimal fine control, so we can divide it by $10$, or any other value to slow this down.
+	
+	This results in the following working code:
+	
+	\begin{lstlisting}[gobble=20]
+		rectangle.setOnScroll(scrollEvent -> {
+			rectangle.setRotate(rectangle.getRotate() + scrollEvent.getDeltaY()/10);
+		});
+	\end{lstlisting}
+	
+	\subsection{Dragging A Rectangle}\label{subsec:dragging a rectangle}
+	
+	Rotating is a rather simple example, so lets look at a more complicated one - dragging a rectangle around with left click.
+	
+	JavaFX has two useful events for this - $onMousePressed$ and $onMouseDragged$. The former is called once when the mouse is pressed, and the latter continuously for as long as the node is dragged. Both use $MouseEvent$, the documentation for which can be found \link{https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/MouseEvent.html}{here}.
+	
+	To be able to move the rectangle, we need to know two things. We need to know where on the rectangle the user has clicked (otherwise we will not know how far to move the rectangle to keep the mouse at the same point on it), and we need to know where the mouse is moving to as it is being dragged.
+	
+	To find where on the rectangle the user clicks, we will need 2 class variables and the $onMousePressed$ event:
+	
+	\pagebreak
+	
+	\begin{lstlisting}[gobble=20]
+		private double anchorX;
+		private double anchorY;
+		...
+	\end{lstlisting}
+	\begin{lstlisting}[gobble=20]
+		...
+		rectangle.setOnMousePressed(mouseEvent -> {
+			if (mouseEvent.isPrimaryButtonDown()) {
+				anchorX = mouseEvent.getX();
+				anchorY = mouseEvent.getY();
+			}
+		});
+		...
+	\end{lstlisting}
+	
+	In this example, we first check that the mouse button being clicked is the primary button, or left click. Since we only want to drag the rectangle on left click, we can ignore any other mouse button. We then get the mouse location and save it in a variable outside the method that will persist and be readable from other events.
+	
+	Now we need to actually move the rectangle. We can do this with the $setLayoutX$ and $setLayoutY$ methods, which, contrary to their names, do not set the $x$ and $y$ location of the rectangle. These methods actually set the amount the rectangle should be moved by in the $x$ or $y$ direction to reach its new location. So $setLayoutX(5)$ would move the rectangle $5$ to the right. This can be implemented rather easily:
+	
+	\begin{lstlisting}[gobble=20]
+		this.setOnMouseDragged(mouseEvent -> {
+			if (mouseEvent.isPrimaryButtonDown()) {
+				this.setLayoutX(mouseEvent.getSceneX() - anchorX);
+				this.setLayoutY(mouseEvent.getSceneY() - anchorY);
+			}
+		});
+	\end{lstlisting}
+	
+	Again, we only want to drag the rectangle if it is left click being pressed, so we check for that. We then move the rectangle by the difference between where the mouse is, and where it was originally. This will continuously update the rectangle's position to follow the mouse, and it will remain in place once left click is released.
+	
+	If you needed to check for overlap between this and other $Node$s, you would do so after the $setLayout$ calls.
+	
+	
+	\chapter{Animations}\label{chap:animations}
+	
+	Animations in JavaFX can be used to create, well, animations, along with some transitions. An animation will progress in the direction and speed specified by its $Rate$, and will progress until its duration is complete, unless paused. You can also set the $cycleCount$ to $Animation.INDEFINITE$, in which case it will repeat the animation forever unless you stop it.
+	
+	There are some basic controls shared by all types of animations in JavaFX. The important ones are as follows:
+	
+	\begin{lstlisting}[gobble=12]
+		// Play an animation
+		// Will resume if previously paused
+		animation.play();
+		// Alternative method
+		// Will restart if previously paused
+		animation.playFromStart();
+		
+		// Pause an animation
+		animation.pause();
+		// Stop an animation
+		animation.stop();
+		
+		// Will make the animation reverse direction
+		// on alternating cycles
+		animation.setAutoReverse(true);
+		
+		// Defines the number of cycles in this animation
+		// Set to Animation.INDEFINITE to repeat indefinitely,
+		// otherwise must be a positive integer
+		animation.setCycleCount(2);
+		
+		// Delay the start of the animation
+		animation.setDelay(Duration.seconds(2));
+		
+		// Controls the timing for accelleration and
+		// deceleration of the animation
+		// Can be set to DISCRETE, EASE_BOTH, EASE_IN, EASE_OUT, LINEAR
+		// Defaults to EASE_BOTH
+		animation.setInterpolator(Interpolator.LINEAR);
+	\end{lstlisting}
+	
+	All animations also have an $onFinished$ event (see \vref{chap:events}) that can be set to run code when the animation completes.
+	
+	\pagebreak
+	
+	There are 2 types of animations in JavaFX - $Timeline$s, and $Transition$s.
+	
+	$Timeline$s are used to define a free form animation of any JavaFX property, one $KeyFrame$ at a time. $Timeline$s are mainly useful for more specific animations that the $Transition$ subclasses do not cover, for when you cannot plan out the whole animation beforehand, or for non-blocking UI updates that you want to run on a timer (for which you should also look into an $AnimationTimer$ before deciding on a $Timeline$). \\
+	$Timeline$s still run on the main JavaFX application thread however, so avoid using them for any long tasks; consider whether the task is absolutely necessary - if so, multithreading is possible, but comes with many risks you have to account for. Multithreading is a long and complex topic that will not be covered in this guide. Avoid it as much as possible.
+	
+	$Transition$s are much easier to use, and should be what is being used unless a $Timeline$ is specifically required. $Transition$, unlike $Timeline$, is an abstract class - this allows you to create your own transition if you need to, however in most cases the existing subclasses will prove sufficient.
+	
+	The rest of this chapter will go over each $Transition$ subclass one at a time. All code examples here are based on or taken from their individual documentation pages.
+	
+	\section{TranslateTransition}\label{sec:translate transition}
+	
+	The $TranslateTransition$ simply creates a move animation that takes as long as its duration to complete by updating the $translateX$, $translateY$ and $translateZ$ variables of the node at regular intervals.
+	
+	You can specify a specific position for it to start from, or leave it to use the $Node$s current position instead. Similarly, you can specify $x$, $y$ and $z$ values to stop at, otherwise it simply moves it by the specified amount.
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setArcHeight(50);
+		rect.setArcWidth(50);
+		rect.setFill(Color.VIOLET);
+		
+		// Create a TranslateTrantition
+		TranslateTransition tt = new TranslateTransition(Duration.seconds(2), rect);
+		tt.setByX(200f);
+		tt.setAutoReverse(true);
+		
+		// Play the animation
+		tt.play();
+	\end{lstlisting}
+	
+	\pagebreak
+	
+	\section{PathTransition}\label{sec:path transition}
+	
+	The $PathTransition$ works similarly to the $TranslateTransition$, except instead of simply moving from one point to another, it will make the $Node$ follow a specified path instead.
+	
+	You can also set the orientation of the $PathTransition$ to $OrientationType.ORTHOGONAL_TO_TANGENT$, in which case the rotation of the $Node$ will be updated as it moves.
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setArcHeight(50);
+		rect.setArcWidth(50);
+		rect.setFill(Color.VIOLET);
+		
+		// Create a Path
+		Path path = new Path();
+		path.getElements().add (new MoveTo (0f, 50f));
+		path.getElements().add (new CubicCurveTo (40f, 10f, 390f, 240f, 1904, 50f));
+		
+		// Create a PathTransition
+		PathTransition pt = new PathTransition();
+		pt.setDuration(Duration.seconds(10));
+		pt.setNode(rect);
+		pt.setPath(path);
+		pt.setOrientation(OrientationType.ORTHOGONAL_TO_TANGENT);
+		pt.setAutoReverse(true);
+		
+		// Play the animation
+		pt.play();
+	\end{lstlisting}
+	
+	\section{ScaleTransition}\label{sec:scale transition}
+	
+	$ScaleTransition$ will scale the $Node$ by a set amount at a regular interval over its duration. You can set limits on the $x$, $y$ and $z$ scale values similarly to $TranslateTransition$.
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setArcHeight(50);
+		rect.setArcWidth(50);
+		rect.setFill(Color.VIOLET);
+		
+		// Create a ScaleTransition
+		ScaleTransition st = new ScaleTransition(Duration.seconds(2), rect);
+		st.setByX(1.5f);
+		st.setByY(1.5f);
+		st.setAutoReverse(true);
+		
+		// Play the animation
+		st.play();
+	\end{lstlisting}
+	
+	\section{RotateTransition}\label{sec:rotate transition}
+	
+	The $RotateTransition$ will rotate its $Node$ at a regular interval by an angle specified in degrees. Limits and start position can be set, similarly to other animations.
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setArcHeight(50);
+		rect.setArcWidth(50);
+		rect.setFill(Color.VIOLET);
+		
+		// Create a RotateTransition
+		RotateTransition rt = new RotateTransition(Duration.seconds(3), rect);
+		rt.setByAngle(180);
+		rt.setAutoReverse(true);
+		
+		// Play the animation
+		rt.play();
+	\end{lstlisting}
+	
+	\section{FillTransition}\label{sec:fill transition}
+	
+	Onto more niche $Transitions$, the $FillTransition$ creates an animation that changes the filling of a $Shape$ over a duration. In this situation, the fill must be a $Color$. Limits can be set similarly to other animations.
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setArcHeight(50);
+		rect.setArcWidth(50);
+		
+		// Create a FillTransition
+		FillTransition ft = new FillTransition(Duration.seconds(3), rect, Color.RED, Color.BLUE);
+		ft.setAutoReverse(true);
+		
+		// Play the animation
+		ft.play();
+	\end{lstlisting}
+	
+	\pagebreak
+	
+	\section{FadeTransition}\label{sec:fade transition}
+	
+	A $FadeTransition$ creates a fade effect spanning its duration by updating the $Node$s $opacity$ at regular intervals. Limits can be set similarly to other animations.
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setArcHeight(50);
+		rect.setArcWidth(50);
+		rect.setFill(Color.VIOLET);
+		
+		// Create a FillTransition
+		FadeTransition ft = new FadeTransition(Duration.seconds(3), rect);
+		ft.setFromValue(1.0);
+		ft.setToValue(0.3);
+		ft.setAutoReverse(true);
+		
+		// Play the animation
+		ft.play();
+	\end{lstlisting}
+	
+	\section{SequentialTransition}\label{sec:sequential transition}
+	
+	Moving onto the more unique $Transition$s, the $SequentialTransition$ does nothing by itself. Instead, it allows you to chain together animations, allowing you to play a list of animations one after the other without creating new animations in the previous one's $onFinished$ event.
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setArcHeight(50);
+		rect.setArcWidth(50);
+		rect.setFill(Color.VIOLET);
+		
+		final Duration SEC_2 = Duration.seconds(2);
+		final Duration SEC_3 = Duration.seconds(3);
+		
+		// Create several animations
+		FadeTransition ft = new FadeTransition(SEC_3);
+		ft.setFromValue(1.0f);
+		ft.setToValue(0.3f);
+		TranslateTransition tt = new TranslateTransition(SEC_2);
+		tt.setFromX(-100f);
+		tt.setToX(100f);
+		RotateTransition rt = new RotateTransition(SEC_3);
+		rt.setByAngle(180f);
+		ScaleTransition st = new ScaleTransition(SEC_2);
+		st.setByX(1.5f);
+		st.setByY(1.5f);
+		
+		// Play all animations in order
+		SequentialTransition seqT = new SequentialTransition (rect, ft, tt, rt, st);
+		seqT.play();
+	\end{lstlisting}
+	
+	\pagebreak
+	
+	\section{ParallelTransition}\label{sec:parallel transition}
+	
+	Another unique $Transition$, $ParallelTransition$ works similarly to $SequentialTransition$, except instead of playing the animations one after the other, they are played in parallel, allowing you to execute multiple animations at the same time.
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setArcHeight(50);
+		rect.setArcWidth(50);
+		rect.setFill(Color.VIOLET);
+		
+		final Duration SEC_2 = Duration.seconds(2);
+		final Duration SEC_3 = Duration.seconds(3);
+		
+		// Create several animations
+		FadeTransition ft = new FadeTransition(SEC_3);
+		ft.setFromValue(1.0f);
+		ft.setToValue(0.3f);
+		TranslateTransition tt = new TranslateTransition(SEC_2);
+		tt.setFromX(-100f);
+		tt.setToX(100f);
+		RotateTransition rt = new RotateTransition(SEC_3);
+		rt.setByAngle(180f);
+		ScaleTransition st = new ScaleTransition(SEC_2);
+		st.setByX(1.5f);
+		st.setByY(1.5f);
+		
+		// Play all animations simultaneously
+		ParallelTransition pt = new ParallelTransition(rect, ft, tt, rt, st);
+		pt.play();
+	\end{lstlisting}
+	
+	\section{PauseTransition}\label{sec:pause transition}
+	
+	The simplest by far of the $Transition$ subclasses, $PauseTransition$ just waits for its duration to finish and then executes its $onFinished$ event. This can be used to do a delayed action, or much more commonly with $SequentialAnimation$ to add a delay in between multiple $Transition$s in a list, or with $ParallelTransition$ to execute code at a certain point in the middle of other animations.
+	
+	
+	\begin{lstlisting}
+		// Create a Rectangle
+		Rectangle rect = new Rectangle (100, 40, 100, 100);
+		rect.setFill(Color.VIOLET);
+		
+		// Create RotateTransition
+		RotateTransition rt = new RotateTransition(Duration.seconds(3), rect);
+		rt.setByAngle(180);
+		
+		// Create PauseTransition
+		PauseTransition pt = new PauseTransition(Duration.seconds(1));
+		
+		// Create SequentialTransition for a delayed rotation
+		SequentialTransition seqTransition = new SequentialTransition (pt, rt);
+		seqTransition.play();
+	\end{lstlisting}
+	
+	\chapter{An In-Depth Example - Draughts}\label{chap:an in depth example}
+	
+	This chapter is going to serve as one large example that will be built on in each subsection in order to create a whole system. For lack of better idea, I'm going to walk through the creation of a JavaFX version of draughts. This is going to follow my thought process as I create this from scratch, and should help show how to put the elements in the chapters above together into one complex system. It's worth noting that some of the logic here is inspired by \link{https://github.com/amir650/BlackWidow-Chess}{this chess implementation using Swing}.
+	
+	Is this mostly because I was bored? Yes.
+	
+	Does it make a really good example? Also yes. 
+	
+	Am I doing draughts because I don't want to deal with image copyright? Still yes. \\ \\
+	
+	\textbf{If you want to skip the game logic and go straight to the parts that involve more than a basic JavaFX window, given that that's what this document is about, head down to any of the following:}
+	
+	$\bullet$ \textbf{Displaying On The GUI - \vref{sec:in depth example - displaying on the gui}} \\
+	$\bullet$ \textbf{Movement With JavaFX - \vref{subsec:in depth example - movement with javafx}} \\
+	
+	The creation of the initial project is going to be completely identical to the process outlined in \vref{sec:creating a project}. Once that has been done, the first thing we will need is the board.
+	
+	\section{The Board (And Table)}\label{sec:in depth example - the board (and table)}
+	
+	Draughts is played on a chess board, but not every aspect of the game takes place on the board itself; there are game settings we might want to add, we want the board to be facing a different direction for each player (so for local multiplayer, it will have to flip after each turn), and if we want to get really fancy, we might want to show the taken pieces and a move log to the side. All of this means we can't just use a normal $Pane$ to display the board on.
+	
+	To start off, we should create some packages and empty classes for the project. We need a $gui$ package for the gui itself, a $board$ package for the $Board$, its $Tile$s and its $Piece$s, and a $turn$ package for the moves and teams.
+	
+	For this example, we're going to have the game itself, and the UI. The UI will provide user input and display, whilst the rest of the code handles all game logic and simply tells the UI what the board looks like at any given moment. We are \textit{not} going to have things move on the UI then update an internal representation - this will be the other way around.
+	
+	First, we're going to modify the $Table$ constructor to take the $Stage$ and create the $Scene$, so that the only code required in the $start$ method of the $Main$ class is creating a table. The $Table$ needs a $Board$, so we'll make a variable for that as well.
+	
+	\begin{lstlisting}[frame=top, caption=Main.Java]
+		@Override
+		public void start(Stage stage) throws IOException {
+			Table root = new Table(stage);
+		}
+	\end{lstlisting}
+	
+	\begin{lstlisting}[frame=top, caption=Table.Java]
+		private Board board;
+		
+		public Table(Stage stage) {
+			Scene scene = new Scene(this, 600, 600);
+			stage.setTitle("Draughts!");
+			stage.setScene(scene);
+			stage.show();
+		}
+	\end{lstlisting} \bigskip
+	
+	Next up we need a basic $Board$. The board will need a list of all the $Tile$s on the board, but it will also need to know where all the white and black pieces are for easy access, along with knowing the current player. There will only ever be one board, so the smartest option would be making this a singleton - a class with a private constructor that creates a single instance when the program starts and just returns that instance whenever asked.
+	
+	\begin{lstlisting}[frame=top, caption=Board.java]
+		public class Board {
+			private final List<Tile> board = new ArrayList<>();
+			private final List<Piece> whitePieces;
+			private final List<Piece> blackPieces;
+			private final Team currentTeam;
+			private static final Board Instance = new Board();
+			
+			private Board() {
+				
+			}
+			
+			public static Board getInstance() {
+				return Instance;
+			}
+			
+			public Team getCurrentTeam() {
+				return this.currentTeam;
+			}
+		}
+	\end{lstlisting} \bigskip
+	
+	\pagebreak
+	
+	The board will need to be created in it's standard layout, so we can do that like this:
+	
+	\begin{lstlisting}[breaklines=false, frame=top, caption=Board.java]				
+		private Board() {
+			for (int i = 0; i < 64; i++) {
+				this.board.add(new Tile(i, getStartingPiece(i)));
+			}
+			this.whitePieces = getActivePieces(this.board, Team.WHITE);
+			this.blackPieces = getActivePieces(this.board, Team.BLACK);
+			this.currentTeam = Team.WHITE;
+		}
+	\end{lstlisting} \bigskip
+	
+	Now we have a lot of unimplemented references, so we need to make them. Starting with the methods in the $Board$ class. \\		
+	We need a method that just makes pieces for the starting layout, so we can do this by checking if each location is in the row, then checking if it is on a square that should have a piece. To get the active pieces for a $Team$, we just need to iterate over the board, get the $Piece$ from each $Tile$, and add it to a list if it belongs to the required $Team$.
+	
+	\begin{lstlisting}[frame=top, caption=Board.java]
+		private static Piece getStartingPiece(final int location) {
+			// Black Side
+			if (location < 8 && location % 2 == 1) 
+			return new Piece(Team.BLACK, location);
+			if (location >= 8 && location < 16 && location % 2 == 0) 
+			return new Piece(Team.BLACK, location);
+			if (location >= 16 && location < 24 && location % 2 == 1) 
+			return new Piece(Team.BLACK, location);
+			// White Side
+			if (location >= 40 && location < 48 location % 2 == 0) 
+			return new Piece(Team.WHITE, location);
+			if (location >= 48 && location < 56 && location % 2 == 1) 
+			return new Piece(Team.WHITE, location);
+			if (location >= 56 && location < 64 && location % 2 == 0) 
+			return new Piece(Team.WHITE, location);
+			// Everywhere Else
+			return null;
+		}
+		
+		private static List<Piece> getActivePieces(final List<Tile> board, final Team team) {
+			final List<Piece> active = new ArrayList<>();
+			for (final Tile tile : board) {
+				if (tile.isOccupied()) {
+					final Piece piece = tile.getPiece();
+					if (piece.getTeam() == team) active.add(piece);
+				}
+			}
+			return active;
+		}
+	\end{lstlisting}
+	
+	\pagebreak
+	
+	Finding the legal moves for pieces is going to mostly be done by the pieces themselves, so the code here just involves iterating over each one:
+	
+	\begin{lstlisting}[frame=top, caption=Board.java]
+		private List<Move> findLegalMoves(final Piece piece) {
+			return piece.findLegalMoves(this.board);
+		}
+	\end{lstlisting} \bigskip
+	
+	The final thing we need for the board currently is a way to display it. Directly displaying it on the GUI immediately would be nice, but then if something goes wrong with the UI code we have no way to know if that's a problem with the GUI or with the board itself. So, in order to give a nice representation of the board without the GUI, we can override $toString()$ for a custom view of the board in the console. We want each $Tile$ to give a string representation of itself, and the board should simply use a $StringBuilder$ to combine them.
+	
+	\begin{lstlisting}[frame=top, caption=Board.java]
+		@Override
+		public String toString() {
+			final StringBuilder bob = new StringBuilder();
+			for (int i = 0; i < 64; i++) {
+				bob.append(String.format("%3s", this.board.get(i).toString()));
+				if ((i + 1) % 8 == 0) {
+					bob.append("\n");
+				}
+			}
+			return bob.toString();
+		}
+	\end{lstlisting} \bigskip
+	
+	With that, we can move on from the $Board$ and start making some $Tile$s and $Piece$s.
+	
+	\section{Tiles And Pieces}\label{sec:tiles and pieces}
+	
+	A $Tile$ is pretty simple - it needs to know it's location and the piece on it, and it needs to be able to tell the program that. That's it.
+	
+	\begin{lstlisting}[frame=top, caption=Tile.java]
+		public class Tile {
+			private final int location;
+			private Piece piece;
+			
+			public Tile(final int location, final Piece piece) {
+				this.location = location;
+				this.piece = piece;
+			}
+			
+			public boolean isOccupied() {
+				return this.piece != null;
+			}
+			
+			public Piece getPiece() {
+				return this.piece;
+			}
+			
+			public int getLocation() {
+				return this.location;
+			}
+			
+			@Override
+			public String toString() {
+				return this.piece == null ? "-" : this.piece.toString();
+			}
+		}
+	\end{lstlisting} \bigskip
+	
+	Yep, that's the whole class. It's that simple. So now moving on to $Piece$.
+	
+	Draughts has two types of pieces - single and double\footnote{There is probably an actual name other than that, but that's how I learnt it so that's what I'm going with.}. If there were more types, such as in chess, it would be worth making an abstract $Piece$ class and inheriting from it, but since there is only the two, we can simply store a boolean $isDoublePiece$.
+	
+	As for the rest, a $Piece$ will need to know it's location and it's $Team$, be able to move and be captured, be able to create a list of legal moves for itself, and it'll need to be able to be promoted. Ignoring the moves for now, this can be done as follows:
+	
+	\begin{lstlisting}[frame=top, caption=Piece.java]
+		public class Piece {
+			private boolean isDoublePiece = false;
+			private final Team team;
+			private int location;
+			
+			public Piece(final Team team, final int location) {
+				this.team = team;
+				this.location = location;
+			}
+			
+			public void promote() {
+				this.isDoublePiece = true;
+			}
+			
+			public boolean isDoublePiece() {
+				return this.isDoublePiece;
+			}
+			
+			public void capture(final List<Tile> board) {
+				this.location = -1;
+			}
+			
+			public int getLocation() {
+				return this.location;
+			}
+			
+			public void setLocation(final int location) {
+				this.location = location;
+			}
+			
+			public Team getTeam() {
+				return this.team;
+			}
+			
+			public void move(Move move) {
+				// TODO
+			}
+			
+			public List<Move> findLegalMoves(final List<Tile> board) {
+				// TODO
+				final List<Move> legalMoves = new ArrayList<>();
+				return legalMoves;
+			}
+		}
+	\end{lstlisting} \bigskip
+	
+	$Piece$ also needs to override the $toString()$ method so we can print the board. This would simply return either $S$ or $D$ depending on if it is a single or double, and change it to lowercase for one team so we can differentiate them.
+	
+	\begin{lstlisting}[frame=top, caption=Piece.java]
+		@Override
+		public String toString() {
+			if (this.isDoublePiece)
+			return this.team == Team.WHITE ? "D" : "d";
+			return this.team == Team.WHITE ? "S" : "s";
+		}
+	\end{lstlisting} \bigskip
+	
+	The last part of $Piece$ is finding where it can move. The movement logic itself is going to be covered in another section, but we still want the program to compile, so we need to know what a $Move$ is. \\
+	A $Move$ will require a $Piece$, a start location, an end location, and a list of $Piece$s being captured.
+	
+	\begin{lstlisting}[frame=top, caption=Move.java]
+		public class Move {
+			private final Piece movingPiece;
+			private final int destination;
+			private final Piece pieceCaptured;
+			
+			public Move(final Piece movingPiece, final int destination, final Piece pieceCaptured) {
+				this.movingPiece = movingPiece;
+				this.destination = destination;
+				this.pieceCaptured = pieceCaptured;
+			}
+		}
+	\end{lstlisting} \bigskip
+	
+	We can write the methods for the $Move$ class later, for now we just need the constructor so the program is one step closer to compilation.
+	
+	That's all for $Tile$s and $Piece$s, so we should only need to implement $Team$ for the program to compile.
+	
+	\section{Teams And Running The Program}\label{sec:in depth example - teams and running the program}
+	
+	For $Team$, we are going to use an enum. An enum is essentially just a labelled integer - in this case, we will have $Team.WHITE$ and $Team.BLACK$, but internally that's just a more readable way of saying $0$ and $1$. This may not seem very useful, but it makes the code much easier to read and in other programs where you could have 20 or more option, it becomes a life saver.
+	
+	\begin{lstlisting}[frame=top, caption=Team.java]
+		public enum Team {
+			WHITE,
+			BLACK
+		}
+	\end{lstlisting} \bigskip
+	
+	Now, we should have everything needed to run the program. Before we do that though, we need to actually get the board onto the table. So in $Table$, before creating the $Scene$, we should get the instance of $Board$ and print it.
+	
+	\begin{lstlisting}[frame=top, caption=Table.java]
+		public class Table extends Pane {
+			
+			private final Board board;
+			
+			public Table(Stage stage) {
+				board = Board.getInstance();
+				System.out.println(board);
+				
+				Scene scene = new Scene(this, 600, 600);
+				stage.setTitle("Draughts!");
+				stage.setScene(scene);
+				stage.show();
+			}
+		}
+	\end{lstlisting} \bigskip
+	
+	And just like that, we now have a draughts board being created, filled with the classes we just wrote! They don't show up on the GUI or do anything yet though, so next up is displaying them properly.
+	
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[width=0.84\textwidth]{Assets/7.1 Running Initial Program.png}
+		\end{center}
+		\caption{The program running!}
+	\end{figure}
+	
+	\pagebreak
+	
+	\section{Displaying On The GUI}\label{sec:in depth example - displaying on the gui}
+	
+	We want to get the board, and everything on it, to be displayed on the JavaFX GUI. So lets think about how to do that.
+	
+	The $Board$ is made entirely of $Tile$s - there is no need for anything to be displayed that is part of the $Board$ and not part of a $Tile$. So we can make the $Board$ inherit from $javafx.scene.Group$.
+	
+	A $Tile$ is going to be a square of a single colour, so inheriting from $javafx.scene.shape.Rectangle$ would be a perfect choice here.
+	
+	Finally, a $Piece$ is going to be a coloured circle. It will also need some indicator for if it is doubled up, but we can ignore that for now. So we can inherit from $javafx.scene.shape.Circle$.
+	
+	\begin{lstlisting}[frame=top, caption=Board.java]
+		public class Board extends Group {
+		\end{lstlisting}
+		\begin{lstlisting}[frame=top, caption=Tile.java]
+			public class Tile extends Rectangle {
+			\end{lstlisting}
+			\begin{lstlisting}[frame=top, caption=Piece.java]
+				public class Piece extends Circle {
+				\end{lstlisting}
+				
+				This will necessitate modifying the constructors for each of these classes to ensure they display everything properly.
+				
+				For $Board$, this is as simple as calling $super()$ then $getChildren().addAll()$ to add all the $Tile$s.
+				
+				\begin{lstlisting}[frame=top, caption=Board.java]
+					private Board() {
+						super();
+						for (int i = 0; i < 64; i++) {
+							this.board.add(new Tile(i, getStartingPiece(i)));
+						}
+						this.getChildren().addAll(this.board);
+						...
+					}
+				\end{lstlisting} \bigskip
+				
+				Next is $Tile$. Each tile has to position itself, but each $Tile$ also stores it's location, so this is not too hard.
+				We need to call $super()$ with the location of each tile. We can determine the $x$ coordinate by doing $location\ \%\ 8$ as there will be 8 tiles per row, then we multiply that by $totalWidth / 8$. Since we are using a $600\times600$ square for the table, $totalWidth$ would be $600$. Figuring out the $y$ coordinate works identically, except instead of doing $location\ \%\ 8$, we do $location / 8$ and round it down with $Math.floor()$. The width and height are then just $600/8$ as you might expect.
+				
+				\begin{lstlisting}[frame=top, caption=Tile.java]
+					public Tile(final int location, final Piece piece) {
+						super((location % 8) * 600.0/8, Math.floor(location / 8.0) * 600.0/8, 600.0/8, 600.0/8);
+						...
+					}
+				\end{lstlisting} \bigskip
+				
+				Figuring out which tiles should be which colour is a little different. We can find all even tiles with $location\ \%\ 2$, but only half of the tiles are on even numbers. We can find whether the tile is on an even row with $(location / 8)\ \%\ 2$ though, and when you combine those you can find every even tile on an even row, and every odd tile on an odd row, as shown below.
+				
+				\begin{lstlisting}[frame=top, caption=Tile.java]
+					public Tile(final int location, final Piece piece) {
+						super(...);
+						if ((location % 2) == 0 && (location / 8) % 2 == 0 || (location % 2) == 1 && (location / 8) % 2 == 1) {
+							this.setFill(Color.WHITE);
+						} else this.setFill(Color.SADDLEBROWN);
+						...
+					}
+				\end{lstlisting} \bigskip
+				
+				If you run the program at this point, you should find that the $Tile$s are all displaying properly on the GUI, but that the $Piece$s are nowhere to be seen since we haven't reached them yet.
+				
+				\begin{figure}[H]
+					\begin{center}
+						\includegraphics[width=0.95\textwidth]{Assets/7.2 Displaying Tiles.png}
+					\end{center}
+					\caption{Displaying Tiles}
+				\end{figure}
+				
+				For the $Piece$s, we start with the $super()$ call just like with the previous two classes, but this time we are going to call it without any arguments. It does allow you to specify the location, radius, and even fill colour, but whilst we do know where the $Piece$ should go thanks to its $location$ attribute, this would require recalculating the coordinates again. Instead, we can set just the fill colour in the piece, and call a $setPiece()$ method in the $Tile$ constructor (this will also be used for moving $Piece$s), where we already know the $Tile$ coordinates.
+				
+				\begin{lstlisting}[frame=top, caption=Piece.java]
+					public Piece(final Team team, final int location) {
+						super();
+						...
+					}
+				\end{lstlisting}
+				
+				\begin{lstlisting}[frame=top, caption=Tile.java]
+					public Tile(final int location, final Piece piece) {
+						...
+					} else this.setFill(Color.SADDLEBROWN);
+					
+					if (piece != null) {
+						piece.setCenterX(this.getX() / 2);
+						piece.setCenterY(this.getY() / 2);
+						piece.setRadius(this.getWidth() * 2 / 3);
+					}
+					
+					this.location = location;
+					...
+				}
+			\end{lstlisting}
+			
+			\begin{lstlisting}[gobble=20, frame=top, caption=Tile.java]
+				public void setPiece(final Piece piece) {
+					if (piece != null) piece.setLocation(this.location);
+					this.piece = piece;
+					if (piece != null) {
+						piece.setCenterX(this.getX() + (this.getWidth() / 2));
+						piece.setCenterY(this.getY() + (this.getWidth() / 2));
+						piece.setRadius(this.getWidth() * 1 / 3);
+					}
+				}
+			\end{lstlisting} \bigskip
+			
+			However, we can't add the $Piece$s to the board from here. We could do it from the $Tile$ class, but the $Tile$ has not been added to the $Board$ and has no knowledge of the $Board$ in it's constructor. Instead, we can add them in $Board$ after we have all active pieces, to prevent extra loops.
+			
+			\begin{lstlisting}[frame=top, caption=Board.java]
+				private Board() {
+					...
+					this.whitePieces = getActivePieces(this.board, Team.WHITE);
+					this.blackPieces = getActivePieces(this.board, Team.BLACK);
+					
+					this.getChildren().addAll(this.whitePieces);
+					this.getChildren().addAll(this.blackPieces);
+					
+					...
+				}
+			\end{lstlisting} \bigskip
+			
+			And with that, everything should now be successfully displayed on the board, and the next step is to make $Piece$s move.
+			
+			\begin{figure}[H]
+				\begin{center}
+					\includegraphics[width=\textwidth]{Assets/7.3 Displaying Initial Board.png}
+				\end{center}
+				\caption{The Initial Board}
+			\end{figure}
+			
+			\section{Moving Pieces}\label{sec:in depth example - moving pieces}
+			
+			Moving $Piece$s is going to be split into two subsections - how movement works internally, and the user input for it. \\
+			The former will focus on actually moving the $Piece$s around the board, whilst the latter will cover how JavaFX takes the user input, displays possible move locations, and changes where the $Piece$ is displayed. Animating the move will be in another section.
+			
+			\subsection{Movement Behind The Scenes}\label{subsec:in depth example - movement behind the scenes}
+			
+			First, we need to know where a $Piece$ can move to. In draughts, pieces can move diagonally forwards, and backwards if doubled up. So in an $8\times8$ grid, diagonally forwards would be moving $-7$ or $-9$ places on the board, and backwards would be $7$ or $9$.
+			
+			\begin{lstlisting}[gobble=20, frame=top, caption=Piece.java]
+				private int[] getPossibleMoveOffsets() {
+					if (this.isDoublePiece) return new int[]{-9, -7, 7, 9};
+					if (this.team == Team.BLACK) return new int[]{7, 9};
+					return new int[]{-7, -9};
+				}
+			\end{lstlisting} \bigskip
+			
+			Now, we need to iterate over these positions, check that each one is on the board, and see if it is occupied or not. If not, we can add a $Move$ to there. We also need to ensure that if the $Piece$ is on the left column, it's move does not wrap around the board, and the same for the right.
+			
+			\begin{lstlisting}[gobble=20, frame=top, caption=Piece.java]
+				public List<Move> findLegalMoves(final List<Tile> board) {
+					final List<Move> legalMoves = new ArrayList<>();
+					
+					for (final int possibleLocation : getPossibleMoveOffsets()) {
+						int possibleEnd = this.location + possibleLocation;
+						if (!isValidTile(possibleEnd)) continue;
+						if (board.get(possibleEnd).isOccupied()) {
+							// In Progress
+						} else {
+							if (this.location % 8 == 0 && (possibleLocation == -9 || possibleLocation == 7)) continue;
+							if ((this.location + 1) % 8 == 0 && (possibleLocation == -7 || possibleLocation == 9)) continue;
+							legalMoves.add(new Move(this, possibleEnd, null));
+						}
+					}
+					return legalMoves;
+				}
+				
+				private boolean isValidTile(final int location) {
+					return location >= 0 && location <= 63;
+				}
+			\end{lstlisting}
+			
+			If it is occupied, we need to see if the next $Tile$ in that direction also exists and is occupied - if it exists and is empty, we can add a capturing $Move$ to there.
+			
+			\begin{lstlisting}[gobble=20, frame=top, caption=Piece.java]
+				if (board.get(possibleEnd).isOccupied()) {
+					if (board.get(possibleEnd).getPiece().getTeam() == this.team) continue;
+					possibleEnd += possibleLocation;
+					if (!isValidTile(possibleEnd) || board.get(possibleEnd)
+					.isOccupied())
+					continue;
+					legalMoves.add(new Move(this, possibleEnd, 
+					board.get(possibleEnd - possibleLocation).getPiece()));
+				} else {
+				\end{lstlisting} \bigskip
+				
+				We can implement chaining capturing moves by simply not passing the turn and limiting legal moves to a single piece, so that's all for determining moves. To actually carry out a move, we need to update the moving $Piece$'s location and remove the $Piece$ from the origin $Tile$.
+				
+				\pagebreak
+				
+				\begin{lstlisting}[gobble=20, frame=top, caption=Piece.java]
+					public void capture(final List<Tile> board) {
+						board.get(this.location).setPiece(null);
+						this.setLocation(-1);
+					}
+					...
+					public void move(final List<Tile> board, final Move move) {
+						board.get(this.location).setPiece(null);
+						board.get(move.getDestination()).setPiece(this);
+						move.getCapturedPiece().capture(board);
+					}
+				\end{lstlisting}
+				\begin{lstlisting}[gobble=20, frame=top, caption=Move.java]
+					public Piece getMovingPiece() {
+						return this.movingPiece;
+					}
+					
+					public int getDestination() {
+						return this.destination;
+					}
+					
+					public Piece getCapturedPiece() {
+						return this.pieceCaptured;
+					}
+				\end{lstlisting}
+				
+				With that, movement works internally! We just have no way for the user to actually tell it to move, and the display doesn't update, so now we can move to the JavaFX part of movement.
+				
+				\subsection{Movement With JavaFX}\label{subsec:in depth example - movement with javafx}
+				
+				$Piece$ movement via JavaFX has 2 parts - selecting the piece and displaying it's possible moves, and selecting and carrying out a move. Also deselecting a $Piece$ if we want to stop displaying it's moves.
+				
+				We can start in the $Piece$ constructor. We need to add an $onMousePressed$ event to select a $Piece$, which will need to check the $Piece$ is on the board and then display valid moves for that piece if it belongs to the current team and is on the board.
+				
+				In $Piece$ we are going to simply add the event handler, and it should consume the event when done to be sure the mouse click does not register anywhere else as well as on the $Piece$.
+				
+				
+				\begin{lstlisting}[gobble=20, frame=top, caption=Piece.java]
+					public Piece(final Team team, final int location) {
+						...
+						
+						this.setOnMouseClicked(mouseEvent -> {
+							Node parent = this.getParent();
+							if (parent instanceof Board) {
+								if (this.team == ((Board) parent).getCurrentTeam()) {
+									((Board) parent).displayMoves(this);
+									mouseEvent.consume();
+								}
+							}
+						});
+					}
+				\end{lstlisting}
+				
+				\pagebreak
+				
+				To actually display the moves, we need to track which $Tile$s are highlighted so we can unhighlight previous ones when we click off their piece, and which $Piece$ is selected along with it's moves so we can move it later. Then we need to check each move individually. If the move is an attack then the destination should be highlighted red, otherwise yellow.
+				
+				\begin{lstlisting}[gobble=20, frame=top, caption=Board.java]
+					...
+					private final List<Integer> highlightedTiles = new ArrayList<>();
+					private Piece selected;
+					private List<Move> selectedPieceMoves;
+					...
+					private void unhighlightAll() {
+						for (final int location : this.highlightedLocations) {
+							this.board.get(location).setFill(Color.SADDLEBROWN);
+						}
+						this.highlightedLocations.clear();
+					}
+					...
+					public void displayMoves(final Piece piece) {
+						if (!this.highlightedLocations.isEmpty())  unhighlightAll();
+						this.selected = piece;
+						this.selectedPieceMoves = findLegalMoves(piece);
+						for (final Move move : this.selectedPieceMoves) {
+							if (move.getCapturedPiece() != null) this.board.get(move.getDestination()).setFill(Color.RED);
+							else this.board.get(move.getDestination()).setFill(Color.YELLOW);
+							this.highlightedLocations.add(move.getDestination());
+						}
+					}
+				\end{lstlisting} \bigskip
+				
+				Now we need to check for clicks on the tiles, both so we can deselect $Piece$s and so we can move them. We make sure to consume the event again as we do not want this click to register elsewhere.
+				
+				\begin{lstlisting}[gobble=20, frame=top, caption=Tile.java]
+					public Tile(final int location, final Piece piece) {
+						...
+						
+						this.setOnMouseClicked(mouseEvent -> {
+							Node parent = this.getParent();
+							if (!(parent instanceof Board)) return;
+							if (((Board) parent).getHighlightedLocations().contains(this.location)) {
+								((Board) parent).moveTo(this.location);
+							} else ((Board) parent).deselectTile();
+							mouseEvent.consume();
+						});
+					}
+				\end{lstlisting} \bigskip
+				
+				Back in $Board$ we then need to implement those methods, all three of which are pretty simple, as they just return a list or call other methods we already wrote. We can also print the $Board$ after a move to be sure everything is working.
+				
+				\pagebreak
+				
+				\begin{lstlisting}[gobble=20, frame=top, caption=Board.java]
+					public List<Integer> getHighlightedTiles() {
+						return this.highlightedTiles;
+					}
+					...
+					public void deselectTile() {
+						if (selected == null) return;
+						this.selected = null;
+						this.selectedPieceMoves.clear();
+						unhighlightAll();
+					}
+					...
+					public void moveTo(final int destination) {
+						for (final Move move : this.selectedPieceMoves) {
+							if (move.getDestination() != destination) continue;
+							this.selected.move(this.board, move);
+							deselectTile();
+							System.out.println(this);
+							passTurn()
+							break;
+						}
+					}
+				\end{lstlisting} \bigskip
+				
+				Once we have movement working, we need to pass the turn. To do that, we're just going to change the $currentTeam$ attribute of $Board$:
+				
+				\begin{lstlisting}[gobble=20, frame=top, caption=Board.java]
+					private void passTurn() {
+						if (this.currentTeam == Team.WHITE) this.currentTeam = Team.BLACK;
+						else this.currentTeam = Team.WHITE;
+					}
+				\end{lstlisting} \bigskip
+				
+				Finally, we need to remove captured pieces from the UI. We've already removed them from the board in the $capture$ method of $Piece$, but they will still show up on the board currently. We can fix this by searching the $Board$s children for the $Piece$ and removing it.
+				
+				\begin{lstlisting}[gobble=20, frame=top, caption=Board.java]
+					public void capture(final List<Tile> board) {
+						...
+						Parent parent = this.getParent();
+						for (final Node node : parent.getChildrenUnmodifiable()) {
+							if (!(node instanceof Piece) || !(parent instanceof Board)) continue;
+							if ((Piece) node == this) ((Board) parent).getChildren().remove(this);
+						}
+					}
+				\end{lstlisting} \bigskip
+				
+				And that's movement complete!
+				
+				\begin{figure}[H]
+					\begin{center}
+						\includegraphics[width=\textwidth]{Assets/7.4 Movement.png}
+					\end{center}
+					\caption{Pieces moving and attacking}
+				\end{figure}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			\end{document}

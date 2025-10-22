@@ -37,7 +37,10 @@
     <p>Below is a selection of images to demonstrate some of its features:</p>
     <!-- TODO: SlideShow here -->
     <br/>
-    <!-- TODO: add JavaFX Guide after adding disclaimer about draughts being inspired by the chess tutorial -->
+    <h2>Beginner's Guide To JavaFX</h2>
+    <p><strong>Link:</strong> <a target="_blank" href="./javafx-guide/JavaFX%20Guide.pdf">Beginner's Guide To JavaFX</a></p>
+    <p>During my second year university group project, I created a beginner's guide to JavaFX (without SceneBuilder) as spike work.</p>
+    <p>While it is by no means fully complete, it is extremely comprehensive, offering guidance on various aspects from setting up a project all the way to animations, along with an in-depth example inspired by <a target="_blank" href="https://github.com/amir650/BlackWidow-Chess">this chess implementation using Swing</a>.</p>
     <br/>
     <h2>AberCompSoc ASCII GameJam 2023-11</h2>
     <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/compsoc-ascii-gamejam">Source Code</a></p>
