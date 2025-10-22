@@ -24,3 +24,5 @@ pnpm-debug.log*
 *.log
 *.synctex.gz
 *.aux
+*.out
+*.toc
