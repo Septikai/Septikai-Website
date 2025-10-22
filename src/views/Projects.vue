@@ -35,8 +35,10 @@
     <p>It allows you to easily search the <a target="_blank" href="https://revolutionidle.wiki.gg/">Revolution Idle Wiki</a>, while also containing a number of community maintained tags for quick information and tutorials on commonly asked topics.</p>
     <p>The bot can be installed to both Discord servers and your own Discord account for you to access it everywhere.</p>
     <p>Below is a selection of images to demonstrate some of its features:</p>
-    <!-- TODO: SlideShow here -->
+    <!-- TODO: rev idle wiki bot images here -->
+<!--    <SlideShow :auto-cycle="true" :images="revIdleWikiBotImages"></SlideShow>-->
     <br/>
+    <!-- TODO: make in-depth example repo public -->
     <h2>Beginner's Guide To JavaFX</h2>
     <p><strong>Link:</strong> <a target="_blank" href="./javafx-guide/JavaFX%20Guide.pdf">Beginner's Guide To JavaFX</a></p>
     <p>During my second year university group project, I created a beginner's guide to JavaFX (without SceneBuilder) as spike work.</p>
