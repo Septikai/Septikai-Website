@@ -34,7 +34,7 @@
     <p>A discord bot to help people playing <a target="_blank" href="https://store.steampowered.com/app/2763740/Revolution_Idle/">Revolution Idle</a>.</p>
     <p>It allows you to easily search the <a target="_blank" href="https://revolutionidle.wiki.gg/">Revolution Idle Wiki</a>, while also containing a number of community maintained tags for quick information and tutorials on commonly asked topics.</p>
     <p>The bot can be installed to both Discord servers and your own Discord account for you to access it everywhere.</p>
-    <p>Below is a selection of images to demonstrate some of its features:</p>
+    <p>A selection of images to demonstrate some of its features will be added below at a later date.</p>
     <!-- TODO: rev idle wiki bot images here -->
 <!--    <SlideShow :auto-cycle="true" :images="revIdleWikiBotImages"></SlideShow>-->
     <br/>
