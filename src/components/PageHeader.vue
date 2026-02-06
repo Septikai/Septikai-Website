@@ -1,12 +1,11 @@
 <template>
   <div class="header">
-    <!-- TODO: Remove the v-if from the router-link when a photo of me is added -->
-    <router-link to="/" v-if="!isPersonal">
-      <div v-if="!isPersonal">
+    <router-link to="/">
+      <div v-if="domain === 'septikai.me'">
         <img class="home-icon border-transparent focus:border-transparent focus:ring-0" alt="Septikai Pfp" src="../assets/square_icon.png">
       </div>
-      <div v-else>
-        <!-- TODO: Put a photo of me here -->
+      <div v-else-if="domain === 'tals.dev'">
+        <img class="home-icon border-transparent focus:border-transparent focus:ring-0" alt="Natalia Photo" src="../assets/photos/IMG_20241031_173152200.jpg">
       </div>
     </router-link>
     <div class="header-v-for">
@@ -28,7 +27,7 @@
 <script>
 export default {
   name: "PageHeader.vue",
-  props: ["isPersonal"],
+  props: ["domain"],
   computed: {
     routes() {
       return this.$router.options.routes.filter((x) => x.includeInHeader);

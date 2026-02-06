@@ -1,0 +1,32 @@
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}JavaFX Installation And Setup}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Creating A Project}{3}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Adding To A Pane}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Shapes}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Text}{6}{section.2.2}%
+\contentsline {chapter}{\numberline {3}File I/O}{7}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Image Manipulation}{8}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Events}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}What Are Events?}{9}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Lambdas}{10}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}Events Examples}{10}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Rotating A Rectangle}{10}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Dragging A Rectangle}{11}{subsection.5.2.2}%
+\contentsline {chapter}{\numberline {6}Animations}{13}{chapter.6}%
+\contentsline {section}{\numberline {6.1}TranslateTransition}{14}{section.6.1}%
+\contentsline {section}{\numberline {6.2}PathTransition}{15}{section.6.2}%
+\contentsline {section}{\numberline {6.3}ScaleTransition}{15}{section.6.3}%
+\contentsline {section}{\numberline {6.4}RotateTransition}{15}{section.6.4}%
+\contentsline {section}{\numberline {6.5}FillTransition}{16}{section.6.5}%
+\contentsline {section}{\numberline {6.6}FadeTransition}{17}{section.6.6}%
+\contentsline {section}{\numberline {6.7}SequentialTransition}{17}{section.6.7}%
+\contentsline {section}{\numberline {6.8}ParallelTransition}{18}{section.6.8}%
+\contentsline {section}{\numberline {6.9}PauseTransition}{18}{section.6.9}%
+\contentsline {chapter}{\numberline {7}An In-Depth Example - Draughts}{19}{chapter.7}%
+\contentsline {section}{\numberline {7.1}The Board (And Table)}{19}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Tiles And Pieces}{22}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Teams And Running The Program}{24}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Displaying On The GUI}{26}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Moving Pieces}{29}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Movement Behind The Scenes}{29}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Movement With JavaFX}{31}{subsection.7.5.2}%

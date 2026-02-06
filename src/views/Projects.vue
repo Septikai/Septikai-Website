@@ -6,6 +6,7 @@
     <p><strong>GitHub Organisation:</strong> <a target="_blank" href="https://github.com/skyblock-tools">Skyblock.Tools</a></p>
     <p>At Skyblock.Tools we aimed to provide useful tools to enhance your Hypixel Skyblock experience. Here you can find any projects that I have worked on as a part of this team.</p>
     <p>Sadly, Skyblock.Tools is discontinued, and everything below is shown as it was beforehand.</p>
+    <p>While I considered reviving it for a while, the demand for its main feature has since dropped thanks to changes to Hypixel Skyblock, and its other features have since been taken on by other popular mods such as <a target="_blank" href="https://github.com/hannibal002/SkyHanni">SkyHanni</a>.</p>
     <div class="sub-section">
       <h3>Skyhouse</h3>
       <p><strong>Mod:</strong> <a target="_blank" href="https://github.com/skyblock-tools/skyhouse-mod">Source Code</a></p>
@@ -26,6 +27,22 @@
       </ul>
       <SlideShow :auto-cycle="true" :images="skyhouseImages"></SlideShow>
     </div>
+    <br/>
+    <h2>Revolution Idle Wiki Bot</h2>
+    <p><strong>Discord Bot:</strong> <a target="_blank" href="https://discord.com/discovery/applications/1401019987996708934">Discovery Page</a></p>
+    <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/revidle-wikibot">Source Code</a></p>
+    <p>A discord bot to help people playing <a target="_blank" href="https://store.steampowered.com/app/2763740/Revolution_Idle/">Revolution Idle</a>.</p>
+    <p>It allows you to easily search the <a target="_blank" href="https://revolutionidle.wiki.gg/">Revolution Idle Wiki</a>, while also containing a number of community maintained tags for quick information and tutorials on commonly asked topics.</p>
+    <p>The bot can be installed to both Discord servers and your own Discord account for you to access it everywhere.</p>
+    <p>A selection of images to demonstrate some of its features will be added below at a later date.</p>
+    <!-- TODO: rev idle wiki bot images here -->
+<!--    <SlideShow :auto-cycle="true" :images="revIdleWikiBotImages"></SlideShow>-->
+    <br/>
+    <!-- TODO: make in-depth example repo public -->
+    <h2>Beginner's Guide To JavaFX</h2>
+    <p><strong>Link:</strong> <a target="_blank" href="./javafx-guide/JavaFX%20Guide.pdf">Beginner's Guide To JavaFX</a></p>
+    <p>During my second year university group project, I created a beginner's guide to JavaFX (without SceneBuilder) as spike work.</p>
+    <p>While it is by no means fully complete, it is extremely comprehensive, offering guidance on various aspects from setting up a project all the way to animations, along with an in-depth example of draughts inspired by <a target="_blank" href="https://github.com/amir650/BlackWidow-Chess">this chess implementation using Swing</a>.</p>
     <br/>
     <h2>AberCompSoc ASCII GameJam 2023-11</h2>
     <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/compsoc-ascii-gamejam">Source Code</a></p>
@@ -55,7 +72,7 @@
     </div>
     <br/>
     <h2>SpiderHeck Mods</h2>
-    <p>Mods for the game <a target="_blank" href="https://store.steampowered.com/app/1329500/SpiderHeck/">SpiderHeck</a> on Steam.</p>
+    <p>Mods for the game <a target="_blank" href="https://store.steampowered.com/app/1329500/SpiderHeck/">SpiderHeck</a> on Steam, using the ModWeaver modloader. Pending a port to the Silk modloader.</p>
     <div class="sub-section">
       <h3>OneShot</h3>
       <p><strong>GitHub:</strong> <a target="_blank" href="https://github.com/Septikai/OneShot">Source Code</a></p>
@@ -100,7 +117,7 @@ export default {
     SlideShow
   },
   props: {
-    isPersonal: Boolean
+    domain: String
   },
   computed: {
     yearsSinceNullzeeBotCreation() {
